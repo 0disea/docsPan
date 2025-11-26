@@ -1,97 +1,130 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: "Pan API"
+description: "Build DeFi features without the complexity. Pan simplifies digital asset management and blockchain operations for modern applications."
 ---
 
-## Setting up
+<Hero
+  title="DeFi made simple"
+  subtitle="Pan API abstracts away blockchain complexity, letting you build sophisticated DeFi features without deep smart contract knowledge or private key management."
+  image="/images/hero-light.png"
+  darkImage="/images/hero-dark.png"
+/>
 
-Get your documentation site up and running in minutes.
-
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
-
-## Make it yours
-
-Design a docs site that looks great and empowers your users.
-
-<Columns cols={2}>
+<CardGroup cols={2}>
   <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
+    title="🚀 Quick start"
+    icon="rocket"
+    href="/guides/quickstart"
   >
-    Edit your docs locally and preview them in real time.
+    Get your first API call working in under 5 minutes
   </Card>
   <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
+    title="🔑 Authentication"
+    icon="key"
+    href="/guides/authentication"
   >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
+    Learn how to authenticate and secure your API requests
   </Card>
   <Card
-    title="API documentation"
+    title="💼 Core concepts"
+    icon="book"
+    href="/guides/concepts/overview"
+  >
+    Understand wallets, intents, and execution plans
+  </Card>
+  <Card
+    title="📚 API reference"
     icon="terminal"
     href="/api-reference/introduction"
   >
-    Auto-generate API documentation from OpenAPI specifications.
+    Complete API endpoint documentation with examples
+  </Card>
+</CardGroup>
+
+## What is Pan?
+
+Pan is a comprehensive platform designed to simplify the integration of advanced digital asset management and DeFi operations into web and mobile applications. Our API abstracts away the inherent complexity of blockchain interactions, allowing developers to implement sophisticated decentralized finance features without deep knowledge of smart contracts, private key management, or transaction optimization.
+
+<Columns cols={3}>
+  <Card
+    title="🛡️ Secure by default"
+    icon="shield"
+  >
+    Enterprise-grade infrastructure with encrypted key storage and multi-layer security
+  </Card>
+  <Card
+    title="⚡ Fast & scalable"
+    icon="bolt"
+  >
+    Optimized queries, parallel processing, and intelligent caching for peak performance
+  </Card>
+  <Card
+    title="🔗 Multi-chain"
+    icon="link"
+  >
+    Unified API that works across multiple blockchains with a single wallet address
   </Card>
 </Columns>
 
-## Create beautiful pages
+## Key features
 
-Everything you need to create world-class documentation.
+<AccordionGroup>
+  <Accordion title="Multi-chain wallet management">
+    Create and manage wallets that work seamlessly across multiple blockchains. Each wallet gets a single address that's compatible with all supported chains, eliminating the need to manage separate addresses per blockchain.
+  </Accordion>
+  
+  <Accordion title="Intent-based operations">
+    Express high-level financial goals instead of specifying exact transactions. Pan automatically determines the best execution strategy, handling swaps, bridges, consolidation, and deposits as needed.
+  </Accordion>
+  
+  <Accordion title="Automatic execution planning">
+    Our intelligent system analyzes wallet state, evaluates DeFi protocols, and generates optimized execution plans that minimize gas costs and slippage while maximizing efficiency.
+  </Accordion>
+  
+  <Accordion title="Real-time status tracking">
+    Monitor intent execution in real-time with detailed progress updates and comprehensive error reporting. Every operation is transparent and traceable.
+  </Accordion>
+</AccordionGroup>
 
-<Columns cols={2}>
+## How it works
+
+<Steps>
+  <Step title="Authenticate">
+    Get your API key from the dashboard and include it in all requests using the `Authorization` header.
+  </Step>
+  
+  <Step title="Create wallets">
+    Create wallets for your users with a simple API call. Each wallet automatically supports all available blockchains.
+  </Step>
+  
+  <Step title="Check balances">
+    Query balances across all chains and tokens with a single endpoint. Get real-time asset information including USD values.
+  </Step>
+  
+  <Step title="Execute intents">
+    Define what you want to achieve (like "lend $1000 USDC"), and Pan handles all the complexity of swaps, bridges, and deposits automatically.
+  </Step>
+</Steps>
+
+## Ready to get started?
+
+<CardGroup cols={2}>
   <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
+    title="Get your API key"
+    icon="key"
+    href="https://app.pan.dev"
   >
-    Use MDX to style your docs pages.
+    Sign up for free and start building in minutes
   </Card>
   <Card
-    title="Code samples"
+    title="View examples"
     icon="code"
-    href="/essentials/code"
+    href="/guides/quickstart"
   >
-    Add sample code to demonstrate how to use your product.
+    See code examples in multiple languages
   </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
+</CardGroup>
 
-## Need inspiration?
-
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+<Note>
+  **Currently in MVP**: Pan API v1 supports lending intents on Ethereum Sepolia, Base Sepolia, and Arbitrum Sepolia testnets. Mainnet support and additional features are coming soon!
+</Note>
