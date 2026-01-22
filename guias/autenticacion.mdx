@@ -190,7 +190,7 @@ X402 es un protocolo de micropagos que permite usar la API sin crear una cuenta,
 
 ### Cuando Usar X402
 
-<Columns cols={2}>
+<CardGroup cols={2}>
   <Card title="Usar X402" icon="check">
     - Integraciones de prueba rapida
     - Acceso anonimo a la API
@@ -202,7 +202,7 @@ X402 es un protocolo de micropagos que permite usar la API sin crear una cuenta,
     - Produccion con alto volumen
     - Cuando necesitas tracking detallado
   </Card>
-</Columns>
+</CardGroup>
 
 ### Como Funciona
 
@@ -271,7 +271,7 @@ Stack Auth **no** es para llamadas programaticas a la API. Usa siempre API Key p
 
 ### 1. Nunca Expongas tu API Key
 
-<Columns cols={2}>
+<CardGroup cols={2}>
   <Card title="MAL" icon="xmark">
     ```javascript
     // En el frontend - NUNCA hagas esto
@@ -288,7 +288,7 @@ Stack Auth **no** es para llamadas programaticas a la API. Usa siempre API Key p
     });
     ```
   </Card>
-</Columns>
+</CardGroup>
 
 ### 2. Usa Variables de Entorno
 
