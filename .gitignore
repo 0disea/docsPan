@@ -1,0 +1,13 @@
+# Claude Code memory files
+CLAUDE.md
+**/CLAUDE.md
+
+# Node modules
+node_modules/
+
+# Local environment
+.env
+.env.local
+
+# OS files
+.DS_Store
