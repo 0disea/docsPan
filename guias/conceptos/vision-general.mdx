@@ -9,53 +9,24 @@ Pan API esta construida alrededor de tres conceptos fundamentales que trabajan j
 
 ```mermaid
 flowchart TB
-    subgraph App["Tu Aplicacion"]
-        SDK["SDK / REST Client"]
-    end
+    App["🖥️ Tu Aplicacion"]
+    App --> SDK["SDK / REST"]
 
-    subgraph Pan["Pan API"]
-        direction TB
-        subgraph Services["Servicios"]
-            WS["Wallets<br/>Service"]
-            IS["Intents<br/>Service"]
-            YS["Yields<br/>Service"]
-        end
+    SDK --> API["Pan API"]
 
-        IP["Intent Planner<br/>Analiza balances, yields y genera plan"]
-        EE["Execution Engine<br/>Ejecuta bridges, swaps, deposits"]
+    API --> Wallets["Wallets Service"]
+    API --> Intents["Intents Service"]
+    API --> Yields["Yields Service"]
 
-        Services --> IP
-        IP --> EE
-    end
+    Intents --> Planner["Intent Planner"]
+    Planner --> Engine["Execution Engine"]
 
-    subgraph Blockchain["Blockchains"]
-        direction TB
-        subgraph Chains["Chains Soportadas"]
-            ETH["Ethereum"]
-            ARB["Arbitrum"]
-            BASE["Base"]
-        end
+    Engine --> Chains["Blockchains"]
 
-        subgraph Protocols["Protocolos DeFi"]
-            AAVE["Aave"]
-            ACROSS["Across Bridge"]
-            UNI["Uniswap"]
-        end
-    end
-
-    App --> Pan
-    Pan --> Blockchain
-
-    style App fill:#e3f2fd,stroke:#1976d2
-    style Pan fill:#fff3e0,stroke:#f57c00
-    style Blockchain fill:#e8f5e9,stroke:#388e3c
-    style IP fill:#fce4ec,stroke:#c2185b
-    style EE fill:#f3e5f5,stroke:#7b1fa2
+    Chains --> ETH["Ethereum"]
+    Chains --> ARB["Arbitrum"]
+    Chains --> BASE["Base"]
 ```
-
-<Tip>
-  **Diagrama interactivo**: Los diagramas Mermaid se renderizan automaticamente en tu navegador.
-</Tip>
 
 ## Los Tres Pilares
 
@@ -257,42 +228,17 @@ erDiagram
 ### Jerarquia Visual
 
 ```mermaid
-graph TB
-    subgraph Dev["Developer Account"]
-        direction TB
-        Keys["API Keys"]
-        Key1["pan_sk_dev_... (desarrollo)"]
-        Key2["pan_sk_prod_... (produccion)"]
-        Keys --> Key1
-        Keys --> Key2
-    end
+flowchart TB
+    Dev["👤 Developer"]
+    Dev --> Keys["🔑 API Keys"]
+    Keys --> DevKey["pan_sk_dev_..."]
+    Keys --> ProdKey["pan_sk_prod_..."]
 
-    subgraph Wallets["Wallets"]
-        direction TB
-        W1["wallet_abc123<br/>Usuario A"]
-        W2["wallet_def456<br/>Usuario B"]
+    Dev --> W1["Wallet: Usuario A"]
+    Dev --> W2["Wallet: Usuario B"]
 
-        subgraph W1B["Balances"]
-            B1["ETH: 200 USDC"]
-            B2["ARB: 500 USDC"]
-            B3["Base: 300 USDC"]
-        end
-
-        subgraph W1I["Intents"]
-            I1["intent_001<br/>lend ✓"]
-            I2["intent_002<br/>withdraw ⏳"]
-        end
-
-        W1 --> W1B
-        W1 --> W1I
-    end
-
-    Dev --> Wallets
-
-    style Dev fill:#e8eaf6,stroke:#3f51b5
-    style Wallets fill:#e3f2fd,stroke:#1976d2
-    style W1B fill:#e8f5e9,stroke:#388e3c
-    style W1I fill:#fff3e0,stroke:#f57c00
+    W1 --> B1["Balances: 1000 USDC"]
+    W1 --> I1["Intents: lend, withdraw"]
 ```
 
 ### Desarrolladores y API Keys

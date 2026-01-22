@@ -421,56 +421,19 @@ curl -X GET https://api.pan.dev/v1/intents/intent_xyz789 \
 ## Arquitectura de Alto Nivel
 
 ```mermaid
-flowchart LR
-    subgraph App["Tu Aplicacion"]
-        Client["SDK / REST"]
-    end
+flowchart TB
+    App["🖥️ Tu App"]
 
-    subgraph PanAPI["Pan API"]
-        REST["REST Endpoints"]
+    App --> API["Pan API"]
 
-        subgraph Planning["Planificacion"]
-            IP["Intent<br/>Planner"]
-            BA["Balance<br/>Analyzer"]
-            YS["Yield<br/>Service"]
-        end
+    API --> Planner["Intent Planner"]
+    API --> Engine["Execution Engine"]
 
-        subgraph Execution["Ejecucion"]
-            EE["Execution<br/>Engine"]
-            Bridge["Bridge<br/>Executor"]
-            Deposit["Deposit<br/>Executor"]
-            Withdraw["Withdraw<br/>Executor"]
-        end
+    Planner --> Engine
 
-        REST --> IP
-        IP --> BA
-        IP --> YS
-        IP --> EE
-        EE --> Bridge
-        EE --> Deposit
-        EE --> Withdraw
-    end
-
-    subgraph Chains["Blockchains"]
-        ETH["Ethereum"]
-        ARB["Arbitrum"]
-        BASE["Base"]
-
-        subgraph DeFi["Protocolos"]
-            AAVE["Aave"]
-            ACROSS["Across"]
-        end
-    end
-
-    App --> PanAPI
-    Execution --> Chains
-
-    style App fill:#e3f2fd,stroke:#1976d2
-    style PanAPI fill:#fff3e0,stroke:#f57c00
-    style Planning fill:#e8f5e9,stroke:#388e3c
-    style Execution fill:#fce4ec,stroke:#c2185b
-    style Chains fill:#f3e5f5,stroke:#7b1fa2
-    style DeFi fill:#fff9c4,stroke:#f9a825
+    Engine --> ETH["Ethereum"]
+    Engine --> ARB["Arbitrum"]
+    Engine --> BASE["Base"]
 ```
 
 <Tip>

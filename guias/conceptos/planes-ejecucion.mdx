@@ -11,44 +11,17 @@ Cuando creas un intent, Pan no ejecuta inmediatamente. Primero pasa por una fase
 
 ```mermaid
 flowchart TB
-    subgraph Phase1["1. ANALISIS DE ESTADO"]
-        A1["Consultar balances<br/>en todas las chains"]
-        A2["Identificar tokens<br/>disponibles"]
-        A3["Calcular totales<br/>por asset"]
-        A1 --> A2 --> A3
-    end
-
-    subgraph Phase2["2. EVALUACION DE PROTOCOLOS"]
-        B1["Obtener APYs de<br/>Aave en cada chain"]
-        B2["Verificar liquidez<br/>disponible"]
-        B3["Evaluar riesgo<br/>de protocolo"]
-        B1 --> B2 --> B3
-    end
-
-    subgraph Phase3["3. OPTIMIZACION DE RUTA"]
-        C1["Calcular opciones<br/>de bridge"]
-        C2["Estimar costos<br/>de gas por ruta"]
-        C3["Comparar costo<br/>total vs beneficio"]
-        C4["Seleccionar<br/>ruta optima"]
-        C1 --> C2 --> C3 --> C4
-    end
-
-    subgraph Phase4["4. GENERACION DE PLAN"]
-        D1["Ordenar<br/>operaciones"]
-        D2["Calcular amounts<br/>exactos"]
-        D3["Estimar<br/>tiempo total"]
-        D1 --> D2 --> D3
-    end
-
-    Phase1 --> Phase2 --> Phase3 --> Phase4
-    Phase4 --> Result([ExecutionPlan])
-
-    style Phase1 fill:#e3f2fd,stroke:#1976d2
-    style Phase2 fill:#e8f5e9,stroke:#388e3c
-    style Phase3 fill:#fff3e0,stroke:#f57c00
-    style Phase4 fill:#fce4ec,stroke:#c2185b
-    style Result fill:#c8e6c9,stroke:#2e7d32
+    A["1️⃣ Analizar balances"] --> B["2️⃣ Evaluar APYs"]
+    B --> C["3️⃣ Optimizar ruta"]
+    C --> D["4️⃣ Generar plan"]
+    D --> E["📋 ExecutionPlan"]
 ```
+
+**Fases de planificacion:**
+1. **Analisis**: Consultar balances en todas las chains
+2. **Evaluacion**: Obtener APYs y verificar liquidez
+3. **Optimizacion**: Calcular rutas y costos de bridge
+4. **Generacion**: Ordenar operaciones y estimar tiempos
 
 ## Estructura de un Plan de Ejecucion
 

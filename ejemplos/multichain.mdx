@@ -14,29 +14,12 @@ Una plataforma DeFi quiere:
 
 ```mermaid
 flowchart LR
-    subgraph Before["Sin Pan ❌"]
-        direction TB
-        B1["Aprobar tokens"]
-        B2["Configurar bridge"]
-        B3["Esperar finalizacion"]
-        B4["Verificar balance"]
-        B5["Aprobar para Aave"]
-        B6["Depositar"]
-        B1 --> B2 --> B3 --> B4 --> B5 --> B6
-    end
-
-    subgraph After["Con Pan ✓"]
-        A1["pan.lend()"]
-        A2["Completado!"]
-        A1 --> A2
-    end
-
-    Before -.->|"100+ lineas de codigo"| After
-    After -.->|"1 linea de codigo"| After
-
-    style Before fill:#ffebee,stroke:#c62828
-    style After fill:#e8f5e9,stroke:#2e7d32
+    A["❌ Sin Pan: 6 pasos manuales"] --> B["✅ Con Pan: 1 llamada"]
 ```
+
+**Sin Pan** necesitas: aprobar tokens, configurar bridge, esperar, verificar balance, aprobar para Aave, depositar.
+
+**Con Pan**: `pan.lend()` y listo.
 
 ### El Problema
 
@@ -92,27 +75,11 @@ const intent = await pan.lend({
 ## Consolidacion de Fondos
 
 ```mermaid
-flowchart TB
-    subgraph Before["Antes: Fondos Distribuidos"]
-        direction LR
-        ETH1["Ethereum<br/>$200 USDC"]
-        ARB1["Arbitrum<br/>$500 USDC"]
-        BASE1["Base<br/>$300 USDC"]
-    end
-
-    Consolidate["🔄 Pan Consolida"]
-
-    subgraph After["Despues: Fondos Consolidados"]
-        direction LR
-        BASE2["Base<br/>$1000 USDC<br/>8.5% APY"]
-    end
-
-    Before --> Consolidate
-    Consolidate --> After
-
-    style Before fill:#fff3e0,stroke:#f57c00
-    style After fill:#e8f5e9,stroke:#388e3c
-    style Consolidate fill:#e3f2fd,stroke:#1976d2
+flowchart LR
+    ETH["ETH: $200"] --> Pan["🔄 Pan"]
+    ARB["ARB: $500"] --> Pan
+    BASE1["Base: $300"] --> Pan
+    Pan --> BASE2["Base: $1000 USDC<br/>8.5% APY"]
 ```
 
 ### Detectar Fondos Distribuidos
