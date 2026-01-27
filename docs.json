@@ -131,7 +131,8 @@
   },
   "logo": {
     "light": "/logo/logo_letras.png",
-    "dark": "/logo/logo_letras.png"
+    "dark": "/logo/logo_letras.png",
+    "height": 30
   },
   "navbar": {
     "links": [
