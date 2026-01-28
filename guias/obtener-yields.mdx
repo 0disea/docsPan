@@ -3,9 +3,9 @@ title: "Obtener Yields"
 description: "Como consultar APYs y oportunidades de rendimiento"
 ---
 
-Pan agrega tasas de rendimiento (APY) de protocolos DeFi en multiples chains, permitiendote encontrar las mejores oportunidades automaticamente.
+pan agrega tasas de rendimiento (APY) de protocolos DeFi en múltiples chains, permitiendote encontrar las mejores oportunidades automaticamente.
 
-## Consulta Basica
+## Consulta Básica
 
 <CodeGroup>
 ```javascript JavaScript
@@ -25,7 +25,7 @@ print(f"Mejor APY: {yields['best']['apy']}%")
 ```
 
 ```bash cURL
-curl -X GET "https://api.pan.dev/v1/yields" \
+curl -X GET "https://api.pan.tech/v1/yields" \
   -H "Authorization: Bearer $PAN_API_KEY"
 ```
 </CodeGroup>
@@ -65,7 +65,7 @@ curl -X GET "https://api.pan.dev/v1/yields" \
 
 ### Campos de Rate
 
-| Campo | Tipo | Descripcion |
+| Campo | Tipo | Descripción |
 |-------|------|-------------|
 | `chain` | string | Nombre de la chain |
 | `protocol` | string | Protocolo DeFi |
@@ -104,7 +104,7 @@ async function analizarMejorOpcion(walletId, amount) {
 
   const { rates, best } = yieldsResponse;
 
-  // 2. Encontrar donde estan los fondos
+  // 2. Encontrar donde están los fondos
   const fuentes = [];
   for (const chainData of balancesResponse.chains) {
     const usdc = chainData.tokens.find(t => t.asset === 'USDC');
@@ -119,7 +119,7 @@ async function analizarMejorOpcion(walletId, amount) {
   // 3. Calcular escenarios
   console.log('\n=== Analisis de Opciones ===\n');
 
-  // Opcion A: Depositar donde estan los fondos (sin bridge)
+  // Opcion A: Depositar donde están los fondos (sin bridge)
   for (const fuente of fuentes) {
     const yieldLocal = rates.find(y => y.chain === fuente.chain);
     if (yieldLocal) {
@@ -149,7 +149,7 @@ async function analizarMejorOpcion(walletId, amount) {
   console.log(`\nAnalisis:`);
   console.log(`  Diferencia APY: ${diferenciaApy.toFixed(2)}%`);
   console.log(`  Ganancia extra anual: $${gananciaExtraAnual.toFixed(2)}`);
-  console.log(`  Dias para recuperar costo de bridge: ${diasParaRecuperar.toFixed(0)}`);
+  console.log(`  Días para recuperar costo de bridge: ${diasParaRecuperar.toFixed(0)}`);
 
   if (diasParaRecuperar < 30) {
     console.log(`  Recomendacion: Bridge a ${best.chain}`);
@@ -260,7 +260,7 @@ function calcularGanancias(monto, apy, periodos = [30, 90, 365]) {
 
     return {
       dias,
-      periodo: dias === 30 ? '1 mes' : dias === 90 ? '3 meses' : '1 año',
+      periodo: días === 30 ? '1 mes' : días === 90 ? '3 meses' : '1 año',
       montoFinal: montoFinal.toFixed(2),
       ganancia: ganancia.toFixed(2),
       porcentaje: ((ganancia / monto) * 100).toFixed(2)
@@ -336,12 +336,12 @@ const monitor = new YieldMonitor(8.0);
 monitor.startMonitoring(300000, (alerts) => {
   alerts.forEach(alert => {
     console.log(`[ALERTA] ${alert.message}`);
-    // Enviar notificacion, email, etc.
+    // Enviar notificación, email, etc.
   });
 });
 ```
 
-## Proximos Pasos
+## Próximos Pasos
 
 <CardGroup cols={2}>
   <Card

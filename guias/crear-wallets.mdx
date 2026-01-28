@@ -1,13 +1,13 @@
 ---
 title: "Crear Wallets"
-description: "Guia practica para crear y gestionar wallets de usuarios"
+description: "Guía práctica para crear y gestionar wallets de usuarios"
 ---
 
-Esta guia te muestra como crear wallets para tus usuarios, consultar wallets existentes, y manejar el ciclo de vida completo de una wallet en Pan.
+Esta guía te muestra como crear wallets para tus usuarios, consultar wallets existentes, y manejar el ciclo de vida completo de una wallet en pan.
 
-## Crear una Wallet Basica
+## Crear una Wallet Básica
 
-El caso mas simple: crear una wallet para un usuario nuevo.
+El caso más simple: crear una wallet para un usuario nuevo.
 
 <CodeGroup>
 ```javascript JavaScript
@@ -29,7 +29,7 @@ import requests
 import os
 
 response = requests.post(
-    'https://api.pan.dev/v1/wallets',
+    'https://api.pan.tech/v1/wallets',
     headers={
         'Authorization': f"Bearer {os.getenv('PAN_API_KEY')}",
         'Content-Type': 'application/json'
@@ -45,7 +45,7 @@ print(f"Address: {wallet['address']}")
 ```
 
 ```bash cURL
-curl -X POST https://api.pan.dev/v1/wallets \
+curl -X POST https://api.pan.tech/v1/wallets \
   -H "Authorization: Bearer $PAN_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{"userId": "usuario_123"}'
@@ -54,7 +54,7 @@ curl -X POST https://api.pan.dev/v1/wallets \
 
 ## Crear Wallet con Metadata
 
-Almacena informacion adicional sobre el usuario:
+Almacena información adicional sobre el usuario:
 
 <CodeGroup>
 ```javascript JavaScript
@@ -76,7 +76,7 @@ const wallet = await pan.wallet.create({
 
 ```python Python
 wallet = requests.post(
-    'https://api.pan.dev/v1/wallets',
+    'https://api.pan.tech/v1/wallets',
     headers=headers,
     json={
         'userId': 'usuario_maria_456',
@@ -95,9 +95,9 @@ wallet = requests.post(
   El `email` se usa para notificaciones opcionales. El `metadata` puede contener cualquier JSON serializable.
 </Note>
 
-## Patron: Crear Wallet al Registrarse
+## Patrón: Crear Wallet al Registrarse
 
-Integra la creacion de wallet en tu flujo de registro:
+Integra la creación de wallet en tu flujo de registro:
 
 ```javascript
 // En tu handler de registro
@@ -108,7 +108,7 @@ async function onUserSignup(userData) {
     name: userData.name
   });
 
-  // 2. Crear wallet de Pan
+  // 2. Crear wallet de pan
   const wallet = await pan.wallet.create({
     userId: user.id,
     email: user.email,
@@ -136,7 +136,7 @@ async function onUserSignup(userData) {
 }
 ```
 
-## Patron: Obtener o Crear Wallet
+## Patrón: Obtener o Crear Wallet
 
 Para usuarios que pueden o no tener wallet:
 
@@ -177,14 +177,14 @@ console.log('Metadata:', wallet.metadata);
 
 ```python Python
 response = requests.get(
-    'https://api.pan.dev/v1/wallets/usuario_123',
+    'https://api.pan.tech/v1/wallets/usuario_123',
     headers=headers
 )
 wallet = response.json()
 ```
 
 ```bash cURL
-curl -X GET "https://api.pan.dev/v1/wallets/usuario_123" \
+curl -X GET "https://api.pan.tech/v1/wallets/usuario_123" \
   -H "Authorization: Bearer $PAN_API_KEY"
 ```
 </CodeGroup>
@@ -209,15 +209,15 @@ try {
 }
 ```
 
-### Limite de wallets excedido
+### Límite de wallets excedido
 
 ```javascript
 try {
   const wallet = await pan.wallet.create({ userId: 'nuevo_usuario' });
 } catch (error) {
   if (error.code === 'WALLET_LIMIT_EXCEEDED') {
-    console.log('Has alcanzado el limite de wallets de tu plan');
-    console.log('Actualiza a Pro o Enterprise para mas wallets');
+    console.log('Has alcanzado el límite de wallets de tu plan');
+    console.log('Actualiza a Pro o Enterprise para más wallets');
     // Mostrar UI de upgrade
   }
 }
@@ -260,7 +260,7 @@ class WalletService {
       throw new Error('Usuario ya tiene wallet');
     }
 
-    // Crear wallet en Pan
+    // Crear wallet en pan
     const wallet = await this.pan.wallet.create({
       userId: user.id,
       email: user.email,
@@ -466,14 +466,14 @@ function WalletCard({ userId }) {
           </div>
         </>
       ) : (
-        <p>Sin balances. Deposita fondos a tu direccion.</p>
+        <p>Sin balances. Deposita fondos a tu dirección.</p>
       )}
     </div>
   );
 }
 ```
 
-## Proximos Pasos
+## Próximos Pasos
 
 <CardGroup cols={2}>
   <Card
@@ -502,6 +502,6 @@ function WalletCard({ userId }) {
     icon="shield"
     href="/guias/mejores-practicas/seguridad"
   >
-    Mejores practicas de seguridad
+    Mejores prácticas de seguridad
   </Card>
 </CardGroup>

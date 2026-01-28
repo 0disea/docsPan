@@ -8,10 +8,10 @@ Obtiene las tasas APY disponibles en protocolos DeFi.
 ## Endpoint
 
 ```
-GET https://api.pan.dev/v1/yields
+GET https://api.pan.tech/v1/yields
 ```
 
-## Autenticacion
+## Autenticación
 
 API Key o X402
 
@@ -52,7 +52,7 @@ API Key o X402
 
 ### Campos de Respuesta
 
-| Campo | Tipo | Descripcion |
+| Campo | Tipo | Descripción |
 |-------|------|-------------|
 | `chains` | string[] | Chains consultadas |
 | `assets` | string[] | Assets soportados |
@@ -62,7 +62,7 @@ API Key o X402
 
 ### Campos de Rate
 
-| Campo | Tipo | Descripcion |
+| Campo | Tipo | Descripción |
 |-------|------|-------------|
 | `chain` | string | Nombre de la chain |
 | `asset` | string | Token soportado |
@@ -70,23 +70,23 @@ API Key o X402
 
 ### Campos de Best
 
-| Campo | Tipo | Descripcion |
+| Campo | Tipo | Descripción |
 |-------|------|-------------|
 | `chain` | string | Chain con mejor yield |
 | `asset` | string | Asset recomendado |
 | `apy` | number | APY de la mejor opcion |
-| `reasoning` | string | Razonamiento de la recomendacion |
+| `reasoning` | string | Razonamiento de la recomendación |
 
 ## Ejemplos
 
 <CodeGroup>
 ```bash cURL
-curl -X GET "https://api.pan.dev/v1/yields" \
+curl -X GET "https://api.pan.tech/v1/yields" \
   -H "Authorization: Bearer $PAN_API_KEY"
 ```
 
 ```javascript JavaScript
-const response = await fetch('https://api.pan.dev/v1/yields', {
+const response = await fetch('https://api.pan.tech/v1/yields', {
   headers: {
     'Authorization': `Bearer ${process.env.PAN_API_KEY}`
   }

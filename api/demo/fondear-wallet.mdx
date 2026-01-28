@@ -12,10 +12,10 @@ Fondea una wallet con tokens de testnet para pruebas.
 ## Endpoint
 
 ```
-POST https://api.pan.dev/v1/demo/fund
+POST https://api.pan.tech/v1/demo/fund
 ```
 
-## Autenticacion
+## Autenticación
 
 API Key
 
@@ -27,11 +27,11 @@ API Key
 }
 ```
 
-### Parametros
+### Parámetros
 
-| Campo | Tipo | Requerido | Descripcion |
+| Campo | Tipo | Requerido | Descripción |
 |-------|------|-----------|-------------|
-| `walletId` | string | Si | ID de la wallet Pan |
+| `walletId` | string | Si | ID de la wallet pan |
 
 <Info>
   La cantidad y chain son fijos: **1 USDC** en **arbitrum-sepolia**. Esto es para evitar abuso del faucet.
@@ -55,21 +55,21 @@ API Key
 
 ### Campos de Respuesta
 
-| Campo | Tipo | Descripcion |
+| Campo | Tipo | Descripción |
 |-------|------|-------------|
 | `success` | boolean | Siempre `true` si exitoso |
 | `walletId` | string | ID de la wallet fondeada |
 | `amount` | number | Cantidad enviada (1 USDC) |
 | `chain` | string | Chain usada (arbitrum-sepolia) |
 | `asset` | string | Token enviado (USDC) |
-| `txHash` | string | Hash de la transaccion |
+| `txHash` | string | Hash de la transacción |
 | `explorerUrl` | string | Link al block explorer |
 
 ### Errores
 
-| Codigo | Error | Descripcion |
+| Código | Error | Descripción |
 |--------|-------|-------------|
-| 401 | UNAUTHORIZED | API key invalida |
+| 401 | UNAUTHORIZED | API key inválida |
 | 404 | WALLET_NOT_FOUND | Wallet no existe |
 | 429 | RATE_LIMITED | Espera 60 segundos entre requests |
 | 500 | FUNDING_FAILED | Error al enviar fondos |
@@ -78,7 +78,7 @@ API Key
 
 <CodeGroup>
 ```bash cURL
-curl -X POST https://api.pan.dev/v1/demo/fund \
+curl -X POST https://api.pan.tech/v1/demo/fund \
   -H "Authorization: Bearer $PAN_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -87,7 +87,7 @@ curl -X POST https://api.pan.dev/v1/demo/fund \
 ```
 
 ```javascript JavaScript
-const response = await fetch('https://api.pan.dev/v1/demo/fund', {
+const response = await fetch('https://api.pan.tech/v1/demo/fund', {
   method: 'POST',
   headers: {
     'Authorization': `Bearer ${process.env.PAN_API_KEY}`,
@@ -108,7 +108,7 @@ console.log('Explorer:', result.explorerUrl);
 
 | Escenario | Respuesta |
 |-----------|-----------|
-| Dentro del limite | `200 OK` + txHash |
+| Dentro del límite | `200 OK` + txHash |
 | Rate limited | `429 Too Many Requests` - esperar 60 segundos |
 
 ## Notas

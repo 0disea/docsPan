@@ -8,10 +8,10 @@ Crea y ejecuta un intent DeFi.
 ## Endpoint
 
 ```
-POST https://api.pan.dev/v1/intents
+POST https://api.pan.tech/v1/intents
 ```
 
-## Autenticacion
+## Autenticación
 
 <Note>
   Solo API Key. X402 no soportado para operaciones de escritura.
@@ -56,9 +56,9 @@ POST https://api.pan.dev/v1/intents
 }
 ```
 
-### Parametros
+### Parámetros
 
-| Campo | Tipo | Requerido | Descripcion |
+| Campo | Tipo | Requerido | Descripción |
 |-------|------|-----------|-------------|
 | `walletId` | string | Si | ID de la wallet |
 | `action` | string | Si | `lend`, `withdraw`, o `bridge` |
@@ -111,28 +111,28 @@ POST https://api.pan.dev/v1/intents
 
 ### Estados
 
-| Estado | Descripcion |
+| Estado | Descripción |
 |--------|-------------|
 | `pending` | Creado, esperando procesamiento |
-| `planning` | Generando plan de ejecucion |
+| `planning` | Generando plan de ejecución |
 | `executing` | Ejecutando transacciones |
 | `completed` | Completado exitosamente |
-| `failed` | Error durante ejecucion |
+| `failed` | Error durante ejecución |
 
 ### Errores
 
-| Codigo | Error | Descripcion |
+| Código | Error | Descripción |
 |--------|-------|-------------|
-| 400 | INVALID_REQUEST | Parametros invalidos |
+| 400 | INVALID_REQUEST | Parámetros invalidos |
 | 400 | INSUFFICIENT_FUNDS | Fondos insuficientes |
-| 401 | UNAUTHORIZED | API key invalida |
+| 401 | UNAUTHORIZED | API key inválida |
 | 404 | WALLET_NOT_FOUND | Wallet no existe |
 
 ## Ejemplos
 
 <CodeGroup>
 ```bash cURL - Lend
-curl -X POST https://api.pan.dev/v1/intents \
+curl -X POST https://api.pan.tech/v1/intents \
   -H "Authorization: Bearer $PAN_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -144,7 +144,7 @@ curl -X POST https://api.pan.dev/v1/intents \
 ```
 
 ```bash cURL - Withdraw
-curl -X POST https://api.pan.dev/v1/intents \
+curl -X POST https://api.pan.tech/v1/intents \
   -H "Authorization: Bearer $PAN_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -157,7 +157,7 @@ curl -X POST https://api.pan.dev/v1/intents \
 ```
 
 ```bash cURL - Bridge
-curl -X POST https://api.pan.dev/v1/intents \
+curl -X POST https://api.pan.tech/v1/intents \
   -H "Authorization: Bearer $PAN_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -200,6 +200,6 @@ const intent = await pan.bridge({
 
 ## Notas
 
-- La ejecucion es asincrona. Usa GET /intents/:id para monitorear
-- Para `lend`, si no especificas `chain`, Pan elige el mejor APY
+- La ejecución es asincrona. Usa GET /intents/:id para monitorear
+- Para `lend`, si no específicas `chain`, pan elige el mejor APY
 - Los intents consumen 5 creditos

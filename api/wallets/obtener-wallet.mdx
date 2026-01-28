@@ -8,16 +8,16 @@ Obtiene la wallet asociada a un usuario.
 ## Endpoint
 
 ```
-GET https://api.pan.dev/v1/wallets/:userId
+GET https://api.pan.tech/v1/wallets/:userId
 ```
 
-## Autenticacion
+## Autenticación
 
 API Key o X402
 
-## Parametros de URL
+## Parámetros de URL
 
-| Parametro | Tipo | Descripcion |
+| Parámetro | Tipo | Descripción |
 |-----------|------|-------------|
 | `userId` | string | ID del usuario en tu app |
 
@@ -48,22 +48,22 @@ API Key o X402
 
 ### Errores
 
-| Codigo | Error | Descripcion |
+| Código | Error | Descripción |
 |--------|-------|-------------|
-| 401 | UNAUTHORIZED | API key invalida |
+| 401 | UNAUTHORIZED | API key inválida |
 | 404 | WALLET_NOT_FOUND | Usuario no tiene wallet |
 
 ## Ejemplos
 
 <CodeGroup>
 ```bash cURL
-curl -X GET "https://api.pan.dev/v1/wallets/usuario_123" \
+curl -X GET "https://api.pan.tech/v1/wallets/usuario_123" \
   -H "Authorization: Bearer $PAN_API_KEY"
 ```
 
 ```javascript JavaScript
 const response = await fetch(
-  'https://api.pan.dev/v1/wallets/usuario_123',
+  'https://api.pan.tech/v1/wallets/usuario_123',
   {
     headers: {
       'Authorization': `Bearer ${process.env.PAN_API_KEY}`

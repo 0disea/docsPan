@@ -1,6 +1,6 @@
 ---
 title: "Seguridad"
-description: "Mejores practicas de seguridad para Pan API"
+description: "Mejores prácticas de seguridad para pan API"
 ---
 
 ## Proteger tu API Key
@@ -56,15 +56,15 @@ Usa API keys diferentes para cada entorno:
 const config = {
   development: {
     apiKey: process.env.PAN_API_KEY_DEV,
-    baseURL: 'https://api-staging.pan.dev/v1'
+    baseURL: 'https://api-staging.pan.tech/v1'
   },
   staging: {
     apiKey: process.env.PAN_API_KEY_STAGING,
-    baseURL: 'https://api-staging.pan.dev/v1'
+    baseURL: 'https://api-staging.pan.tech/v1'
   },
   production: {
     apiKey: process.env.PAN_API_KEY_PROD,
-    baseURL: 'https://api.pan.dev/v1'
+    baseURL: 'https://api.pan.tech/v1'
   }
 };
 
@@ -103,17 +103,17 @@ vercel secrets add pan_api_key pan_sk_...
 docker run -e PAN_API_KEY=$PAN_API_KEY myapp
 ```
 
-## Rotacion de Keys
+## Rotación de Keys
 
-Rota tus API keys periodicamente (cada 90 dias recomendado):
+Rota tus API keys periódicamente (cada 90 días recomendado):
 
 1. Crea una nueva key en el dashboard
-2. Actualiza tu aplicacion con la nueva key
+2. Actualiza tu aplicación con la nueva key
 3. Verifica que todo funcione
 4. Revoca la key anterior
 
 ```javascript
-// Script de verificacion post-rotacion
+// Script de verificación post-rotación
 async function verificarKey() {
   try {
     const yields = await pan.yields.getAll();
@@ -139,14 +139,14 @@ Si sospechas que una key fue expuesta:
 ## No Exponer en Frontend
 
 <Warning>
-  NUNCA uses tu API key en codigo del lado del cliente.
+  NUNCA uses tu API key en código del lado del cliente.
 </Warning>
 
 ### Arquitectura Segura
 
 ```
 ┌──────────────────┐     ┌──────────────────┐     ┌──────────────────┐
-│    Frontend      │ --> │    Tu Backend    │ --> │    Pan API       │
+│    Frontend      │ --> │    Tu Backend    │ --> │    pan API       │
 │ (sin API key)    │     │ (con API key)    │     │                  │
 └──────────────────┘     └──────────────────┘     └──────────────────┘
 ```
@@ -162,7 +162,7 @@ const pan = new Pan({ apiKey: process.env.PAN_API_KEY! });
 export async function POST(request: Request) {
   const { userId } = await request.json();
 
-  // Verificar autenticacion del usuario aqui
+  // Verificar autenticación del usuario aqui
 
   const wallet = await pan.wallet.create({ userId });
   return Response.json(wallet);
@@ -182,7 +182,7 @@ async function createWallet(userId: string) {
 
 ## Validar Inputs
 
-Siempre valida datos antes de enviar a Pan:
+Siempre válida datos antes de enviar a pan:
 
 ```typescript
 import { z } from 'zod';
@@ -201,7 +201,7 @@ async function createWallet(data: unknown) {
 
 ## Logging Seguro
 
-No loguees informacion sensible:
+No loguees información sensible:
 
 ```typescript
 // MAL
@@ -227,7 +227,7 @@ function sanitizeLog(obj: object): object {
 
 ## Monitorear Uso
 
-Revisa el dashboard periodicamente para detectar:
+Revisa el dashboard periódicamente para detectar:
 
 - Picos de uso inesperados
 - Requests desde IPs desconocidas
@@ -236,7 +236,7 @@ Revisa el dashboard periodicamente para detectar:
 ```typescript
 // Alerta de uso alto
 async function checkUsage() {
-  const usage = await fetch('https://api.pan.dev/dashboard/usage', {
+  const usage = await fetch('https://api.pan.tech/dashboard/usage', {
     headers: { Authorization: `Bearer ${API_KEY}` }
   });
 
@@ -253,14 +253,14 @@ async function checkUsage() {
 <CardGroup cols={2}>
   <Card title="API Key">
     - [ ] En variables de entorno
-    - [ ] No en codigo fuente
+    - [ ] No en código fuente
     - [ ] Keys diferentes por entorno
     - [ ] Rotacion programada
   </Card>
   <Card title="Arquitectura">
     - [ ] API key solo en backend
     - [ ] Frontend sin acceso directo
-    - [ ] Validacion de inputs
+    - [ ] Validación de inputs
     - [ ] Logging sanitizado
   </Card>
 </CardGroup>

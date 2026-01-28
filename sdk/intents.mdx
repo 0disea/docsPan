@@ -42,7 +42,7 @@ const intent = await pan.bridge({
 
 ## Crear Intent de Transfer
 
-Transfiere tokens a una direccion externa:
+Transfiere tokens a una dirección externa:
 
 ```typescript
 const intent = await pan.transfer({
@@ -55,7 +55,7 @@ const intent = await pan.transfer({
 ```
 
 <Warning>
-  **Transfer** envia tokens fuera de la wallet Pan. Verifica la direccion destino antes de ejecutar.
+  **Transfer** envia tokens fuera de la wallet pan. Verifica la dirección destino antes de ejecutar.
 </Warning>
 
 ## Obtener Estado
@@ -70,7 +70,7 @@ console.log('Pasos completados:', intent.results?.completedSteps);
 ## Tipos
 
 ```typescript
-// Parametros de entrada
+// Parámetros de entrada
 interface LendIntentParams {
   walletId: string;
   amount: number;
@@ -93,7 +93,7 @@ interface BridgeIntentParams {
 
 interface TransferIntentParams {
   walletId: string;
-  to: string;         // Direccion destino
+  to: string;         // Dirección destino
   amount: number;
   asset?: string;
   chain: string;      // Requerido
@@ -117,7 +117,7 @@ interface Intent {
   completedAt?: string;
 }
 
-// Plan de ejecucion
+// Plan de ejecución
 interface ExecutionPlan {
   strategy: 'direct-deposit' | 'bridge-and-lend' | 'multi-bridge-and-lend' | 'simple-withdraw' | 'bridge-only';
   steps: ExecutionStep[];

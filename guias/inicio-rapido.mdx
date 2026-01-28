@@ -1,21 +1,21 @@
 ---
-title: "Inicio Rapido"
-description: "Tu primera integracion con Pan API en menos de 5 minutos"
+title: "Inicio Rápido"
+description: "Tu primera integración con pan API en menos de 5 minutos"
 ---
 
-Esta guia te llevara paso a paso para hacer tu primera llamada a Pan API. Al final, habras creado una wallet, consultado su balance, y ejecutado tu primer intent de lending.
+Esta guía te llevara paso a paso para hacer tu primera llamada a pan API. Al final, habras creado una wallet, consultado su balance, y ejecutado tu primer intent de lending.
 
 ## Antes de Empezar
 
 <Steps>
-  <Step title="Registrate en Pan">
-    Visita [app.pan.dev](https://app.pan.dev) y crea tu cuenta. El plan gratuito incluye:
+  <Step title="Registrate en pan">
+    Visita [app.pan.tech](https://app.pan.tech) y crea tu cuenta. El plan gratuito incluye:
     - 100 wallets
-    - 100 creditos de API
+    - 100 créditos de API
     - Acceso a testnets
 
     <Tip>
-      No necesitas tarjeta de credito para comenzar.
+      No necesitas tarjeta de crédito para comenzar.
     </Tip>
   </Step>
 
@@ -29,7 +29,7 @@ Esta guia te llevara paso a paso para hacer tu primera llamada a Pan API. Al fin
     ```
 
     <Warning>
-      **Nunca expongas tu API key** en codigo del lado del cliente, repositorios publicos, o logs. Tratala como una contrasena.
+      **Nunca expongas tu API key** en código del lado del cliente, repositorios publicos, o logs. Tratala como una contrasena.
     </Warning>
   </Step>
 
@@ -56,11 +56,11 @@ Esta guia te llevara paso a paso para hacer tu primera llamada a Pan API. Al fin
 
 ### 1. Crea una Wallet
 
-Las wallets son la base de Pan. Cada wallet representa un usuario en tu aplicacion y soporta automaticamente todas las blockchains.
+Las wallets son la base de pan. Cada wallet representa un usuario en tu aplicación y soporta automáticamente todas las blockchains.
 
 <CodeGroup>
 ```bash cURL
-curl -X POST https://api.pan.dev/v1/wallets \
+curl -X POST https://api.pan.tech/v1/wallets \
   -H "Authorization: Bearer $PAN_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -73,7 +73,7 @@ curl -X POST https://api.pan.dev/v1/wallets \
 ```
 
 ```javascript JavaScript
-const response = await fetch('https://api.pan.dev/v1/wallets', {
+const response = await fetch('https://api.pan.tech/v1/wallets', {
   method: 'POST',
   headers: {
     'Authorization': `Bearer ${process.env.PAN_API_KEY}`,
@@ -97,7 +97,7 @@ import os
 import requests
 
 response = requests.post(
-    'https://api.pan.dev/v1/wallets',
+    'https://api.pan.tech/v1/wallets',
     headers={
         'Authorization': f"Bearer {os.getenv('PAN_API_KEY')}",
         'Content-Type': 'application/json'
@@ -159,11 +159,11 @@ console.log('Wallet creada:', wallet);
 
 ### 2. Fondea la Wallet (Testnet)
 
-Para probar en testnet, necesitas obtener tokens de prueba. Pan ofrece un endpoint de demo para fondear wallets en testnet:
+Para probar en testnet, necesitas obtener tokens de prueba. pan ofrece un endpoint de demo para fondear wallets en testnet:
 
 <CodeGroup>
 ```bash cURL
-curl -X POST https://api.pan.dev/v1/demo/fund \
+curl -X POST https://api.pan.tech/v1/demo/fund \
   -H "Authorization: Bearer $PAN_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -172,7 +172,7 @@ curl -X POST https://api.pan.dev/v1/demo/fund \
 ```
 
 ```javascript JavaScript
-const response = await fetch('https://api.pan.dev/v1/demo/fund', {
+const response = await fetch('https://api.pan.tech/v1/demo/fund', {
   method: 'POST',
   headers: {
     'Authorization': `Bearer ${process.env.PAN_API_KEY}`,
@@ -204,13 +204,13 @@ Verifica que los fondos llegaron consultando el balance de la wallet:
 
 <CodeGroup>
 ```bash cURL
-curl -X GET "https://api.pan.dev/v1/balances/pan_wallet_a1b2c3d4e5f6" \
+curl -X GET "https://api.pan.tech/v1/balances/pan_wallet_a1b2c3d4e5f6" \
   -H "Authorization: Bearer $PAN_API_KEY"
 ```
 
 ```javascript JavaScript
 const response = await fetch(
-  'https://api.pan.dev/v1/balances/pan_wallet_a1b2c3d4e5f6',
+  'https://api.pan.tech/v1/balances/pan_wallet_a1b2c3d4e5f6',
   {
     headers: {
       'Authorization': `Bearer ${process.env.PAN_API_KEY}`
@@ -266,12 +266,12 @@ Antes de prestar, veamos donde conviene depositar:
 
 <CodeGroup>
 ```bash cURL
-curl -X GET "https://api.pan.dev/v1/yields" \
+curl -X GET "https://api.pan.tech/v1/yields" \
   -H "Authorization: Bearer $PAN_API_KEY"
 ```
 
 ```javascript JavaScript
-const response = await fetch('https://api.pan.dev/v1/yields', {
+const response = await fetch('https://api.pan.tech/v1/yields', {
   headers: {
     'Authorization': `Bearer ${process.env.PAN_API_KEY}`
   }
@@ -320,11 +320,11 @@ yields.rates.forEach(y => {
 
 ### 5. Ejecuta tu Primer Intent
 
-Ahora viene la magia. Crea un intent de lending y Pan se encargara de todo:
+Ahora viene la magia. Crea un intent de lending y pan se encargara de todo:
 
 <CodeGroup>
 ```bash cURL
-curl -X POST https://api.pan.dev/v1/intents \
+curl -X POST https://api.pan.tech/v1/intents \
   -H "Authorization: Bearer $PAN_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -336,7 +336,7 @@ curl -X POST https://api.pan.dev/v1/intents \
 ```
 
 ```javascript JavaScript
-const response = await fetch('https://api.pan.dev/v1/intents', {
+const response = await fetch('https://api.pan.tech/v1/intents', {
   method: 'POST',
   headers: {
     'Authorization': `Bearer ${process.env.PAN_API_KEY}`,
@@ -353,7 +353,7 @@ const response = await fetch('https://api.pan.dev/v1/intents', {
 const intent = await response.json();
 console.log('Intent creado:', intent.id);
 console.log('Estado:', intent.status);
-console.log('Plan de ejecucion:', JSON.stringify(intent.executionPlan, null, 2));
+console.log('Plan de ejecución:', JSON.stringify(intent.executionPlan, null, 2));
 ```
 
 ```typescript TypeScript (SDK)
@@ -396,16 +396,16 @@ console.log('Estado:', intent.status);
 </ResponseExample>
 
 <Note>
-  **Observa el plan de ejecucion**: Pan analiza los balances disponibles y los APYs en cada chain para determinar la estrategia optima. En este caso, como los fondos ya estan en arbitrum-sepolia, usa `direct-deposit`.
+  **Observa el plan de ejecución**: pan analiza los balances disponibles y los APYs en cada chain para determinar la estrategia optima. En este caso, como los fondos ya están en arbitrum-sepolia, usa `direct-deposit`.
 </Note>
 
-### 6. Monitorea la Ejecucion
+### 6. Monitorea la Ejecución
 
 Los intents se ejecutan de forma asincrona. Consulta el estado periodicamente:
 
 <CodeGroup>
 ```bash cURL
-curl -X GET "https://api.pan.dev/v1/intents/intent_xyz789abc123" \
+curl -X GET "https://api.pan.tech/v1/intents/intent_xyz789abc123" \
   -H "Authorization: Bearer $PAN_API_KEY"
 ```
 
@@ -416,7 +416,7 @@ async function monitorearIntent(intentId) {
 
   while (intentos < maxIntentos) {
     const response = await fetch(
-      `https://api.pan.dev/v1/intents/${intentId}`,
+      `https://api.pan.tech/v1/intents/${intentId}`,
       {
         headers: {
           'Authorization': `Bearer ${process.env.PAN_API_KEY}`
@@ -439,7 +439,7 @@ async function monitorearIntent(intentId) {
       throw new Error(intent.error.message);
     }
 
-    // Mostrar progreso si esta ejecutando
+    // Mostrar progreso si está ejecutando
     if (intent.status === 'executing' && intent.executionPlan) {
       const completados = intent.results?.completedSteps || 0;
       const total = intent.executionPlan.steps.length;
@@ -515,7 +515,7 @@ console.log('Completado:', completedIntent);
 6. GET  /v1/intents/:id     → Monitorear hasta completar
 ```
 
-## Codigo Completo
+## Código Completo
 
 Aqui tienes un script completo que puedes copiar y ejecutar:
 
@@ -524,7 +524,7 @@ Aqui tienes un script completo que puedes copiar y ejecutar:
 import 'dotenv/config';
 
 const API_KEY = process.env.PAN_API_KEY;
-const BASE_URL = 'https://api.pan.dev/v1';
+const BASE_URL = 'https://api.pan.tech/v1';
 
 async function request(method, endpoint, body = null) {
   const options = {
@@ -544,7 +544,7 @@ async function request(method, endpoint, body = null) {
 }
 
 async function main() {
-  console.log('=== Pan API - Inicio Rapido ===\n');
+  console.log('=== pan API - Inicio Rápido ===\n');
 
   // 1. Crear wallet
   console.log('1. Creando wallet...');
@@ -587,7 +587,7 @@ async function main() {
   console.log(`   Estrategia: ${intent.executionPlan?.strategy}\n`);
 
   // 6. Monitorear
-  console.log('6. Monitoreando ejecucion...');
+  console.log('6. Monitoreando ejecución...');
   let status = intent.status;
   while (status !== 'completed' && status !== 'failed') {
     await new Promise(r => setTimeout(r, 5000));
@@ -608,7 +608,7 @@ import time
 import requests
 
 API_KEY = os.environ.get('PAN_API_KEY')
-BASE_URL = 'https://api.pan.dev/v1'
+BASE_URL = 'https://api.pan.tech/v1'
 
 def request(method, endpoint, body=None):
     headers = {
@@ -624,7 +624,7 @@ def request(method, endpoint, body=None):
     return response.json()
 
 def main():
-    print('=== Pan API - Inicio Rapido ===\n')
+    print('=== pan API - Inicio Rápido ===\n')
 
     # 1. Crear wallet
     print('1. Creando wallet...')
@@ -667,7 +667,7 @@ def main():
     print(f"   Estrategia: {intent.get('executionPlan', {}).get('strategy')}\n")
 
     # 6. Monitorear
-    print('6. Monitoreando ejecucion...')
+    print('6. Monitoreando ejecución...')
     status = intent['status']
     while status not in ['completed', 'failed']:
         time.sleep(5)
@@ -682,39 +682,39 @@ if __name__ == '__main__':
 ```
 </CodeGroup>
 
-## Proximos Pasos
+## Próximos Pasos
 
 <CardGroup cols={2}>
   <Card
-    title="Autenticacion"
+    title="Autenticación"
     icon="key"
     href="/guias/autenticacion"
   >
-    Aprende sobre API keys, X402, y mejores practicas de seguridad
+    Aprende sobre API keys, X402, y mejores prácticas de seguridad
   </Card>
   <Card
     title="Conceptos Clave"
     icon="book"
     href="/guias/conceptos/vision-general"
   >
-    Entiende a fondo wallets, intents y planes de ejecucion
+    Entiende a fondo wallets, intents y planes de ejecución
   </Card>
   <Card
     title="SDK de JavaScript"
     icon="code"
     href="/sdk/instalacion"
   >
-    Usa el SDK oficial para una integracion mas simple
+    Usa el SDK oficial para una integración más simple
   </Card>
   <Card
     title="Referencia API"
     icon="terminal"
     href="/api/introduccion"
   >
-    Documentacion completa de todos los endpoints
+    Documentación completa de todos los endpoints
   </Card>
 </CardGroup>
 
 <Tip>
-  **Tokens de testnet**: Recuerda que Pan actualmente opera en testnets. Obtiene tokens gratuitos de los faucets para experimentar con la API.
+  **Tokens de testnet**: Recuerda que pan actualmente opera en testnets. Obtiene tokens gratuitos de los faucets para experimentar con la API.
 </Tip>

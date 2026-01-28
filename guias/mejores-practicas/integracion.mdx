@@ -1,6 +1,6 @@
 ---
-title: "Integracion"
-description: "Patrones de integracion con Pan API"
+title: "Integración"
+description: "Patrones de integración con pan API"
 ---
 
 ## Arquitectura Recomendada
@@ -17,18 +17,18 @@ description: "Patrones de integracion con Pan API"
 │              (Node.js, Python, etc.)                         │
 │                                                              │
 │  ┌─────────────────┐  ┌─────────────────┐                   │
-│  │  Pan Service    │  │  Tu Base de     │                   │
+│  │  pan Service    │  │  Tu Base de     │                   │
 │  │  (SDK)          │  │  Datos          │                   │
 │  └─────────────────┘  └─────────────────┘                   │
 └─────────────────────────────────────────────────────────────┘
                               │
                               ▼
 ┌─────────────────────────────────────────────────────────────┐
-│                        Pan API                               │
+│                        pan API                               │
 └─────────────────────────────────────────────────────────────┘
 ```
 
-## Servicio de Pan
+## Servicio de pan
 
 ```typescript
 // services/pan.service.ts
@@ -201,7 +201,7 @@ async function handleIntentCompleted(data: any) {
   });
 
   // Notificar usuario
-  await sendNotification(data.userId, 'Tu deposito fue exitoso!');
+  await sendNotification(data.userId, 'Tu depósito fue exitoso!');
 }
 ```
 

@@ -1,42 +1,42 @@
 ---
-title: "Introduccion a la API"
-description: "Documentacion completa de Pan API v1"
+title: "Introducción a la API"
+description: "Documentación completa de pan API v1"
 ---
 
-Bienvenido a la referencia de Pan API. Esta documentacion describe todos los endpoints disponibles, formatos de request/response, codigos de error, y metodos de autenticacion.
+Bienvenido a la referencia de pan API. Esta documentación describe todos los endpoints disponibles, formatos de request/response, códigos de error, y métodos de autenticación.
 
 ## URL Base
 
 Todas las requests deben hacerse a:
 
 ```
-https://api.pan.dev/v1
+https://api.pan.tech/v1
 ```
 
 <Note>
-  **Entorno de staging**: Para pruebas, usa `https://api-staging.pan.dev/v1`. Staging usa solo testnets y esta aislado de produccion.
+  **Entorno de staging**: Para pruebas, usa `https://api-staging.pan.tech/v1`. Staging usa solo testnets y está aislado de produccion.
 </Note>
 
-## Autenticacion
+## Autenticación
 
-Todos los endpoints requieren autenticacion usando una API key. Incluye tu API key en el header `Authorization`:
+Todos los endpoints requieren autenticación usando una API key. Incluye tu API key en el header `Authorization`:
 
 ```bash
 Authorization: Bearer pan_sk_tu_api_key
 ```
 
 <Warning>
-  Manten tu API key secreta. Nunca la expongas en codigo del lado del cliente o repositorios publicos. Ver [guia de autenticacion](/guias/autenticacion).
+  Manten tu API key secreta. Nunca la expongas en código del lado del cliente o repositorios publicos. Ver [guia de autenticación](/guias/autenticación).
 </Warning>
 
 ## Versionado
 
-Pan API usa versionado basado en URL. La version actual es `v1`, incluida en la URL base. Versiones futuras usaran paths diferentes (ej. `/v2/`) para mantener compatibilidad hacia atras.
+pan API usa versionado basado en URL. La version actual es `v1`, incluida en la URL base. Versiones futuras usaran paths diferentes (ej. `/v2/`) para mantener compatibilidad hacia atras.
 
 ## Formato de Requests
 
 Todas las requests deben usar:
-- **Metodo**: Metodos HTTP (GET, POST, etc.)
+- **Metodo**: Métodos HTTP (GET, POST, etc.)
 - **Content-Type**: `application/json` para bodies
 - **Encoding**: UTF-8
 
@@ -73,17 +73,17 @@ Todas las respuestas retornan JSON:
   </Accordion>
 </AccordionGroup>
 
-## Codigos HTTP
+## Códigos HTTP
 
-Pan API usa codigos HTTP estandar:
+pan API usa códigos HTTP estandar:
 
-| Codigo | Significado | Descripcion |
+| Código | Significado | Descripción |
 |--------|-------------|-------------|
 | 200 | OK | Request exitoso |
 | 201 | Created | Recurso creado |
-| 400 | Bad Request | Request invalido |
-| 401 | Unauthorized | API key faltante o invalida |
-| 403 | Forbidden | Limite de recursos excedido |
+| 400 | Bad Request | Request inválido |
+| 401 | Unauthorized | API key faltante o inválida |
+| 403 | Forbidden | Límite de recursos excedido |
 | 404 | Not Found | Recurso no existe |
 | 429 | Too Many Requests | Rate limit excedido |
 | 500 | Internal Server Error | Error del servidor |
@@ -93,7 +93,7 @@ Pan API usa codigos HTTP estandar:
 
 ### Wallets
 
-| Metodo | Endpoint | Descripcion |
+| Método | Endpoint | Descripción |
 |--------|----------|-------------|
 | POST | `/wallets` | Crear wallet |
 | GET | `/wallets/:userId` | Obtener wallet por userId |
@@ -101,26 +101,26 @@ Pan API usa codigos HTTP estandar:
 
 ### Intents
 
-| Metodo | Endpoint | Descripcion |
+| Método | Endpoint | Descripción |
 |--------|----------|-------------|
 | POST | `/intents` | Crear intent |
 | GET | `/intents/:intentId` | Obtener estado de intent |
 
 ### Yields
 
-| Metodo | Endpoint | Descripcion |
+| Método | Endpoint | Descripción |
 |--------|----------|-------------|
 | GET | `/yields` | Obtener APYs disponibles |
 
 ### Demo
 
-| Metodo | Endpoint | Descripcion |
+| Método | Endpoint | Descripción |
 |--------|----------|-------------|
 | POST | `/demo/fund` | Fondear wallet de prueba |
 
 ## Rate Limits
 
-Los rate limits dependen de tu plan de suscripcion:
+Los rate limits dependen de tu plan de suscripción:
 
 | Plan | Requests por minuto | Wallets maximas |
 |------|---------------------|-----------------|
@@ -137,11 +137,11 @@ X-RateLimit-Remaining: 0
 X-RateLimit-Reset: 1642248000
 ```
 
-## Creditos
+## Créditos
 
-Cada request consume creditos de tu cuenta:
+Cada request consume créditos de tu cuenta:
 
-| Endpoint | Creditos |
+| Endpoint | Créditos |
 |----------|----------|
 | POST /wallets | 1 |
 | GET /wallets/:id | 1 |
@@ -170,16 +170,11 @@ Cada request consume creditos de tu cuenta:
 </CardGroup>
 
 <Info>
-  Los SDKs son opcionales. Puedes usar cualquier cliente HTTP para interactuar con Pan API. Todos los endpoints son REST estandar.
+  Los SDKs son opcionales. Puedes usar cualquier cliente HTTP para interactuar con pan API. Todos los endpoints son REST estandar.
 </Info>
 
 ## Soporte
 
-<CardGroup cols={2}>
-  <Card title="Email" icon="envelope">
-    support@pan.dev
-  </Card>
-  <Card title="Discord" icon="discord">
-    [Unete a Discord](https://discord.gg/pan)
-  </Card>
-</CardGroup>
+<Card title="Email" icon="envelope">
+  support@pan.tech
+</Card>

@@ -26,26 +26,26 @@ try {
 
 ```typescript
 class PanError extends Error {
-  code: string;           // Codigo de error
-  statusCode: number;     // Codigo HTTP
+  code: string;           // Código de error
+  statusCode: number;     // Código HTTP
   message: string;        // Mensaje legible
-  details?: object;       // Informacion adicional
+  details?: object;       // Información adicional
 }
 ```
 
-## Codigos Comunes
+## Códigos Comunes
 
-| Codigo | Status | Descripcion |
+| Código | Status | Descripción |
 |--------|--------|-------------|
-| `UNAUTHORIZED` | 401 | API key invalida |
+| `UNAUTHORIZED` | 401 | API key inválida |
 | `FORBIDDEN` | 403 | Sin permisos |
 | `WALLET_NOT_FOUND` | 404 | Wallet no existe |
 | `INTENT_NOT_FOUND` | 404 | Intent no existe |
 | `WALLET_ALREADY_EXISTS` | 409 | Usuario ya tiene wallet |
-| `WALLET_LIMIT_EXCEEDED` | 403 | Limite de wallets |
+| `WALLET_LIMIT_EXCEEDED` | 403 | Límite de wallets |
 | `INSUFFICIENT_FUNDS` | 400 | Fondos insuficientes |
 | `RATE_LIMITED` | 429 | Demasiadas requests |
-| `INVALID_REQUEST` | 400 | Request invalido |
+| `INVALID_REQUEST` | 400 | Request inválido |
 
 ## Manejo por Tipo
 
@@ -67,7 +67,7 @@ async function createWalletSafe(userId: string) {
         throw new Error('Limite de wallets alcanzado. Actualiza tu plan.');
 
       case 'UNAUTHORIZED':
-        throw new Error('Error de autenticacion. Verifica tu API key.');
+        throw new Error('Error de autenticación. Verifica tu API key.');
 
       case 'RATE_LIMITED':
         // Esperar y reintentar
@@ -81,9 +81,9 @@ async function createWalletSafe(userId: string) {
 }
 ```
 
-## Reintentos Automaticos
+## Reintentos Automáticos
 
-El SDK reintenta automaticamente algunos errores:
+El SDK reintenta automáticamente algunos errores:
 
 ```typescript
 const pan = new Pan({
@@ -119,7 +119,7 @@ async function ejecutarConManejo(fn: () => Promise<any>) {
       handlePanError(error);
     } else if (error.name === 'TypeError' || error.name === 'NetworkError') {
       // Error de red
-      throw new Error('Error de conexion. Verifica tu internet.');
+      throw new Error('Error de conexión. Verifica tu internet.');
     } else {
       // Error desconocido
       console.error('Error inesperado:', error);
@@ -135,14 +135,14 @@ function handlePanError(error: PanError) {
     case 401:
       throw new Error('Sesion expirada. Inicia sesion nuevamente.');
     case 403:
-      throw new Error('No tienes permisos para esta accion.');
+      throw new Error('No tienes permisos para está accion.');
     case 404:
       throw new Error('Recurso no encontrado.');
     case 429:
       throw new Error('Demasiadas solicitudes. Intenta en un momento.');
     case 500:
     case 503:
-      throw new Error('Error del servidor. Intenta mas tarde.');
+      throw new Error('Error del servidor. Intenta más tarde.');
     default:
       throw error;
   }
@@ -167,7 +167,7 @@ export function usePanError() {
   const handleError = useCallback((err: unknown, retryFn?: () => void) => {
     if (err instanceof PanError) {
       const messages: Record<string, string> = {
-        UNAUTHORIZED: 'Error de autenticacion',
+        UNAUTHORIZED: 'Error de autenticación',
         WALLET_NOT_FOUND: 'Wallet no encontrada',
         INSUFFICIENT_FUNDS: 'Fondos insuficientes',
         RATE_LIMITED: 'Demasiadas solicitudes',

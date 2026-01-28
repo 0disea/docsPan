@@ -1,13 +1,13 @@
 ---
 title: "Ejecutar Intents"
-description: "Guia practica para ejecutar operaciones DeFi con intents"
+description: "Guía práctica para ejecutar operaciones DeFi con intents"
 ---
 
-Esta guia te muestra como ejecutar diferentes tipos de intents, monitorear su progreso, y manejar los resultados.
+Esta guía te muestra como ejecutar diferentes tipos de intents, monitorear su progreso, y manejar los resultados.
 
 ## Ejecutar un Intent de Lending
 
-El caso mas comun: depositar fondos para ganar intereses.
+El caso más comun: depositar fondos para ganar intereses.
 
 <CodeGroup>
 ```javascript JavaScript
@@ -20,7 +20,7 @@ const intent = await pan.lend({
   walletId: 'pan_wallet_abc123',
   amount: 1000,
   asset: 'USDC'
-  // No especificamos chain - Pan elige la mejor
+  // No especificamos chain - pan elige la mejor
 });
 
 console.log('Intent creado:', intent.id);
@@ -32,7 +32,7 @@ console.log('Estrategia:', intent.executionPlan?.strategy);
 import requests
 
 response = requests.post(
-    'https://api.pan.dev/v1/intents',
+    'https://api.pan.tech/v1/intents',
     headers={
         'Authorization': f'Bearer {API_KEY}',
         'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ print(f"Estado: {intent['status']}")
 ```
 
 ```bash cURL
-curl -X POST https://api.pan.dev/v1/intents \
+curl -X POST https://api.pan.tech/v1/intents \
   -H "Authorization: Bearer $PAN_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -87,7 +87,7 @@ async function ejecutarLending(walletId, amount) {
   console.log(`Intent creado: ${intent.id}`);
   console.log(`Plan: ${intent.executionPlan?.strategy}`);
 
-  // 4. Monitorear ejecucion
+  // 4. Monitorear ejecución
   const resultado = await monitorearIntent(intent.id);
 
   // 5. Mostrar resultado
@@ -206,7 +206,7 @@ async function verificarYEjecutar(walletId, amount, asset = 'USDC') {
   );
 
   if (!confirmar) {
-    console.log('Operacion cancelada');
+    console.log('Operación cancelada');
     return null;
   }
 
@@ -326,7 +326,7 @@ async function ejecutarConManejo(params) {
         break;
 
       case 'BRIDGE_FAILED':
-        console.error('Bridge fallo - los fondos estan seguros en origen');
+        console.error('Bridge fallo - los fondos están seguros en origen');
         // Reintentar o notificar usuario
         break;
 
@@ -381,7 +381,7 @@ async function ejecutarConReintentos(params, maxReintentos = 3) {
     }
   }
 
-  throw new Error(`Fallido despues de ${maxReintentos} intentos`);
+  throw new Error(`Fallido después de ${maxReintentos} intentos`);
 }
 ```
 
@@ -461,7 +461,7 @@ function LendingForm({ walletId }) {
       )}
 
       {status === 'loading' && (
-        <div>Creando operacion...</div>
+        <div>Creando operación...</div>
       )}
 
       {status === 'executing' && (
@@ -478,7 +478,7 @@ function LendingForm({ walletId }) {
           <p>APY: {result.apy}%</p>
           <p>Gas: ${result.totalGasCostUsd}</p>
           <button onClick={() => setStatus('idle')}>
-            Nueva operacion
+            Nueva operación
           </button>
         </div>
       )}
@@ -496,7 +496,7 @@ function LendingForm({ walletId }) {
 }
 ```
 
-## Proximos Pasos
+## Próximos Pasos
 
 <CardGroup cols={2}>
   <Card

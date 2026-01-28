@@ -3,9 +3,9 @@ title: "Consultar Balances"
 description: "Como consultar y mostrar balances de wallets multi-chain"
 ---
 
-Esta guia te muestra como consultar balances de wallets, interpretar la respuesta, y mostrar la informacion a tus usuarios.
+Esta guía te muestra como consultar balances de wallets, interpretar la respuesta, y mostrar la información a tus usuarios.
 
-## Consulta Basica
+## Consulta Básica
 
 <CodeGroup>
 ```javascript JavaScript
@@ -25,7 +25,7 @@ print(f"Total: ${balances['totalValueUsd']}")
 ```
 
 ```bash cURL
-curl -X GET "https://api.pan.dev/v1/balances/pan_wallet_abc123" \
+curl -X GET "https://api.pan.tech/v1/balances/pan_wallet_abc123" \
   -H "Authorization: Bearer $PAN_API_KEY"
 ```
 </CodeGroup>
@@ -79,10 +79,10 @@ curl -X GET "https://api.pan.dev/v1/balances/pan_wallet_abc123" \
 
 ### Campos de Token
 
-| Campo | Tipo | Descripcion |
+| Campo | Tipo | Descripción |
 |-------|------|-------------|
-| `asset` | string | Simbolo del token (USDC, ETH) |
-| `balance` | string | Balance en unidades minimas |
+| `asset` | string | Símbolo del token (USDC, ETH) |
+| `balance` | string | Balance en unidades mínimas |
 | `balanceFormatted` | string | Balance con decimales |
 | `decimals` | number | Decimales del token |
 | `valueUsd` | number | Valor en USD |
@@ -223,7 +223,7 @@ const check = await verificarFondos('pan_wallet_abc123', 'USDC', 1000);
 
 if (!check.suficiente) {
   console.log(`Faltan ${check.faltante} USDC`);
-  console.log('Deposita mas fondos para continuar');
+  console.log('Deposita más fondos para continuar');
 } else {
   console.log('Fondos suficientes');
   console.log('Disponible en:', check.fuentes);
@@ -270,7 +270,7 @@ function BalanceCard({ walletId }) {
       </div>
 
       <div className="address">
-        <span className="label">Direccion:</span>
+        <span className="label">Dirección:</span>
         <code>{data.address}</code>
         <button onClick={() => navigator.clipboard.writeText(data.address)}>
           Copiar
@@ -280,7 +280,7 @@ function BalanceCard({ walletId }) {
       {data.items.length === 0 ? (
         <div className="empty">
           <p>Sin balances</p>
-          <p>Deposita fondos a tu direccion para comenzar</p>
+          <p>Deposita fondos a tu dirección para comenzar</p>
         </div>
       ) : (
         <>
@@ -453,7 +453,7 @@ watcher.start(30000); // Cada 30 segundos
 watcher.stop();
 ```
 
-## Proximos Pasos
+## Próximos Pasos
 
 <CardGroup cols={2}>
   <Card

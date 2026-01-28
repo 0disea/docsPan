@@ -21,9 +21,9 @@ X-RateLimit-Remaining: 95
 X-RateLimit-Reset: 1642248000
 ```
 
-| Header | Descripcion |
+| Header | Descripción |
 |--------|-------------|
-| `X-RateLimit-Limit` | Maximo requests por minuto |
+| `X-RateLimit-Limit` | Máximo requests por minuto |
 | `X-RateLimit-Remaining` | Requests restantes en ventana actual |
 | `X-RateLimit-Reset` | Timestamp Unix cuando se reinicia |
 
@@ -124,15 +124,15 @@ const limiter = new RateLimiter(100, 60000); // 100/min
 
 async function makeRequest() {
   await limiter.acquire();
-  return fetch('https://api.pan.dev/v1/yields', { ... });
+  return fetch('https://api.pan.tech/v1/yields', { ... });
 }
 ```
 
-## Creditos
+## Créditos
 
 Ademas del rate limit, cada request consume creditos:
 
-| Endpoint | Creditos |
+| Endpoint | Créditos |
 |----------|----------|
 | POST /wallets | 1 |
 | GET /wallets/:id | 1 |
@@ -144,7 +144,7 @@ Ademas del rate limit, cada request consume creditos:
 ### Verificar Creditos
 
 ```bash
-curl https://api.pan.dev/dashboard/credits \
+curl https://api.pan.tech/dashboard/credits \
   -H "Authorization: Bearer $PAN_API_KEY"
 ```
 

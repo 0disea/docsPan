@@ -1,6 +1,6 @@
 ---
 title: "Codigos de Error"
-description: "Referencia completa de errores de Pan API"
+description: "Referencia completa de errores de pan API"
 ---
 
 ## Estructura de Error
@@ -8,14 +8,14 @@ description: "Referencia completa de errores de Pan API"
 ```json
 {
   "error": "ERROR_CODE",
-  "message": "Descripcion legible del error",
+  "message": "Descripción legible del error",
   "details": {
-    "campo": "informacion adicional"
+    "campo": "información adicional"
   }
 }
 ```
 
-## Errores de Autenticacion
+## Errores de Autenticación
 
 ### UNAUTHORIZED
 
@@ -33,7 +33,7 @@ description: "Referencia completa de errores de Pan API"
 - API key mal formateada
 - API key revocada o invalida
 
-**Solucion**:
+**Solución**:
 ```javascript
 // Verificar formato correcto
 headers: {
@@ -53,11 +53,11 @@ headers: {
 **Codigo HTTP**: 403
 
 **Causas**:
-- Creditos insuficientes
-- Plan no permite esta operacion
+- Créditos insuficientes
+- Plan no permite está operación
 - Acceso a recurso de otro developer
 
-## Errores de Validacion
+## Errores de Validación
 
 ### INVALID_REQUEST
 
@@ -125,7 +125,7 @@ headers: {
 
 **Codigo HTTP**: 404
 
-**Solucion**: Crear wallet primero o verificar userId
+**Solución**: Crear wallet primero o verificar userId
 
 ### INTENT_NOT_FOUND
 
@@ -156,7 +156,7 @@ headers: {
 
 **Codigo HTTP**: 409
 
-**Solucion**: Usar GET para obtener wallet existente
+**Solución**: Usar GET para obtener wallet existente
 
 ## Errores de Limites
 
@@ -176,7 +176,7 @@ headers: {
 
 **Codigo HTTP**: 403
 
-**Solucion**: Actualizar plan o eliminar wallets no usadas
+**Solución**: Actualizar plan o eliminar wallets no usadas
 
 ### RATE_LIMITED
 
@@ -202,7 +202,7 @@ X-RateLimit-Remaining: 0
 X-RateLimit-Reset: 1642248045
 ```
 
-**Solucion**: Implementar backoff exponencial
+**Solución**: Implementar backoff exponencial
 
 ### INSUFFICIENT_CREDITS
 
@@ -219,9 +219,9 @@ X-RateLimit-Reset: 1642248045
 
 **Codigo HTTP**: 402
 
-**Solucion**: Comprar mas creditos o actualizar plan
+**Solución**: Comprar más créditos o actualizar plan
 
-## Errores de Ejecucion
+## Errores de Ejecución
 
 ### INSUFFICIENT_FUNDS
 
@@ -240,7 +240,7 @@ X-RateLimit-Reset: 1642248045
 
 **Codigo HTTP**: 400
 
-**Solucion**: Depositar mas fondos antes de ejecutar
+**Solución**: Depositar más fondos antes de ejecutar
 
 ### BRIDGE_FAILED
 
@@ -304,7 +304,7 @@ X-RateLimit-Reset: 1642248045
 
 **Codigo HTTP**: 500
 
-**Solucion**: Reintentar con backoff, contactar soporte si persiste
+**Solución**: Reintentar con backoff, contactar soporte si persiste
 
 ### SERVICE_UNAVAILABLE
 
@@ -317,7 +317,7 @@ X-RateLimit-Reset: 1642248045
 
 **Codigo HTTP**: 503
 
-**Solucion**: Reintentar despues del `Retry-After` header
+**Solución**: Reintentar después del `Retry-After` header
 
 ## Manejo de Errores
 

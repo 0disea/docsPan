@@ -8,16 +8,16 @@ Obtiene los balances de tokens en todas las chains soportadas.
 ## Endpoint
 
 ```
-GET https://api.pan.dev/v1/balances/:walletId
+GET https://api.pan.tech/v1/balances/:walletId
 ```
 
-## Autenticacion
+## Autenticación
 
 API Key o X402
 
-## Parametros de URL
+## Parámetros de URL
 
-| Parametro | Tipo | Descripcion |
+| Parámetro | Tipo | Descripción |
 |-----------|------|-------------|
 | `walletId` | string | ID de la wallet (`pan_wallet_...`) |
 
@@ -65,41 +65,41 @@ API Key o X402
 
 ### Campos de Respuesta
 
-| Campo | Tipo | Descripcion |
+| Campo | Tipo | Descripción |
 |-------|------|-------------|
 | `walletId` | string | ID de la wallet |
-| `address` | string | Direccion de la wallet |
+| `address` | string | Dirección de la wallet |
 | `chains` | array | Lista de chains con balances |
 | `totalValueUsd` | number | Valor total en USD |
 
 ### Campos de Token
 
-| Campo | Tipo | Descripcion |
+| Campo | Tipo | Descripción |
 |-------|------|-------------|
-| `asset` | string | Simbolo del token (USDC, WETH, etc.) |
-| `balance` | string | Balance en unidades minimas |
+| `asset` | string | Símbolo del token (USDC, WETH, etc.) |
+| `balance` | string | Balance en unidades mínimas |
 | `balanceFormatted` | string | Balance con decimales |
 | `decimals` | number | Decimales del token |
 | `valueUsd` | number | Valor en USD (opcional) |
 
 ### Errores
 
-| Codigo | Error | Descripcion |
+| Código | Error | Descripción |
 |--------|-------|-------------|
-| 401 | UNAUTHORIZED | API key invalida |
+| 401 | UNAUTHORIZED | API key inválida |
 | 404 | WALLET_NOT_FOUND | Wallet no existe |
 
 ## Ejemplos
 
 <CodeGroup>
 ```bash cURL
-curl -X GET "https://api.pan.dev/v1/balances/pan_wallet_a1b2c3d4e5f6" \
+curl -X GET "https://api.pan.tech/v1/balances/pan_wallet_a1b2c3d4e5f6" \
   -H "Authorization: Bearer $PAN_API_KEY"
 ```
 
 ```javascript JavaScript
 const response = await fetch(
-  'https://api.pan.dev/v1/balances/pan_wallet_a1b2c3d4e5f6',
+  'https://api.pan.tech/v1/balances/pan_wallet_a1b2c3d4e5f6',
   {
     headers: {
       'Authorization': `Bearer ${process.env.PAN_API_KEY}`

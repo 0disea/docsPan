@@ -1,9 +1,9 @@
 ---
 title: "Chains Soportadas"
-description: "Blockchains compatibles con Pan"
+description: "Blockchains compatibles con pan"
 ---
 
-## Vision General
+## Visión General
 
 | Layer | Chain | Chain ID |
 |-------|-------|----------|
@@ -67,17 +67,17 @@ Los L2 (Arbitrum, Base) heredan la seguridad de Ethereum.
 | Explorador | [etherscan.io](https://etherscan.io) |
 | Tiempo de bloque | ~12 segundos |
 | Costo de gas | Alto ($5-50 por tx) |
-| Finalizacion | ~15 minutos |
+| Finalización | ~15 minutos |
 
-**Contratos Pan:**
+**Contratos pan:**
 ```
 Wallet Factory: 0x... (pendiente)
 ```
 
-**Caracteristicas:**
-- Mayor seguridad y descentralizacion
-- Liquidez mas profunda
-- Gas mas costoso
+**Características:**
+- Mayor seguridad y descentralización
+- Liquidez más profunda
+- Gas más costoso
 - Recomendado para montos grandes (>$10,000)
 
 ### Arbitrum One
@@ -89,16 +89,16 @@ Wallet Factory: 0x... (pendiente)
 | Explorador | [arbiscan.io](https://arbiscan.io) |
 | Tiempo de bloque | ~0.25 segundos |
 | Costo de gas | Bajo ($0.10-1 por tx) |
-| Finalizacion | ~7 dias (datos a L1) |
+| Finalización | ~7 días (datos a L1) |
 
-**Contratos Pan:**
+**Contratos pan:**
 ```
 Wallet Factory: 0x... (pendiente)
 ```
 
-**Caracteristicas:**
+**Características:**
 - Gas muy economico
-- Transacciones rapidas
+- Transacciónes rapidas
 - Hereda seguridad de Ethereum
 - Ideal para la mayoria de operaciones
 
@@ -111,14 +111,14 @@ Wallet Factory: 0x... (pendiente)
 | Explorador | [basescan.org](https://basescan.org) |
 | Tiempo de bloque | ~2 segundos |
 | Costo de gas | Muy bajo ($0.01-0.50 por tx) |
-| Finalizacion | ~7 dias (datos a L1) |
+| Finalización | ~7 días (datos a L1) |
 
-**Contratos Pan:**
+**Contratos pan:**
 ```
 Wallet Factory: 0x... (pendiente)
 ```
 
-**Caracteristicas:**
+**Características:**
 - Gas extremadamente bajo
 - Desarrollado por Coinbase
 - Ecosistema en crecimiento
@@ -126,10 +126,10 @@ Wallet Factory: 0x... (pendiente)
 
 ## Comparativa de Chains
 
-| Chain | Costo | Velocidad | Posicion |
+| Chain | Costo | Velocidad | Posición |
 |-------|-------|-----------|----------|
-| Base | Muy bajo | Rapida | Rapida y Barata |
-| Arbitrum | Bajo | Muy rapida | Rapida y Barata |
+| Base | Muy bajo | Rápida | Rápida y Barata |
+| Arbitrum | Bajo | Muy rápida | Rápida y Barata |
 | Ethereum | Alto | Lenta | Lenta y Cara |
 
 <Info>
@@ -138,7 +138,7 @@ Wallet Factory: 0x... (pendiente)
 
 ### Costos de Gas
 
-| Operacion | Ethereum | Arbitrum | Base |
+| Operación | Ethereum | Arbitrum | Base |
 |-----------|----------|----------|------|
 | Transferencia simple | $5-15 | $0.10-0.30 | $0.01-0.05 |
 | Aprobar token | $10-30 | $0.20-0.50 | $0.02-0.10 |
@@ -146,24 +146,24 @@ Wallet Factory: 0x... (pendiente)
 | Bridge (envio) | $15-40 | $0.30-0.80 | $0.05-0.15 |
 
 <Note>
-Los costos de gas varian segun la congestion de la red. Los valores son estimados.
+Los costos de gas varian segun la congestión de la red. Los valores son estimados.
 </Note>
 
 ### Velocidad
 
-| Metrica | Ethereum | Arbitrum | Base |
+| Métrica | Ethereum | Arbitrum | Base |
 |---------|----------|----------|------|
-| Confirmacion inicial | 12s | <1s | 2s |
-| Finalizacion soft | 2-3 bloques | 1 bloque | 1 bloque |
-| Finalizacion hard | ~15 min | ~7 dias | ~7 dias |
+| Confirmación inicial | 12s | <1s | 2s |
+| Finalización soft | 2-3 bloques | 1 bloque | 1 bloque |
+| Finalización hard | ~15 min | ~7 días | ~7 días |
 
 ### Recomendaciones por Caso de Uso
 
 | Caso de Uso | Chain Recomendada | Razon |
 |-------------|-------------------|-------|
-| Depositos pequenos (<$500) | Base | Gas minimo |
+| Depositos pequenos (<$500) | Base | Gas mínimo |
 | Depositos medianos ($500-$10k) | Arbitrum | Balance gas/seguridad |
-| Depositos grandes (>$10k) | Ethereum | Maxima seguridad |
+| Depositos grandes (>$10k) | Ethereum | Máxima seguridad |
 | Trading frecuente | Arbitrum | Velocidad y bajo costo |
 | Largo plazo (hodl) | Ethereum | Seguridad |
 
@@ -253,11 +253,11 @@ const CHAIN_IDS = {
 ## Proximas Chains
 
 <Info>
-Las siguientes chains estan en evaluacion para futuras versiones:
+Las siguientes chains están en evaluacion para futuras versiones:
 - **Optimism** - L2 con gran ecosistema DeFi
 - **Polygon** - Popular en LATAM
 - **Avalanche** - C-Chain con buena liquidez
-- **zkSync** - L2 con tecnologia ZK
+- **zkSync** - L2 con tecnología ZK
 </Info>
 
 ## FAQ
@@ -270,21 +270,21 @@ Las siguientes chains estan en evaluacion para futuras versiones:
     - Bridges confiables (Across Protocol)
     - Infraestructura madura
 
-    Agregaremos mas chains basado en demanda de usuarios.
+    Agregaremos más chains basado en demanda de usuarios.
   </Accordion>
 
   <Accordion title="¿Puedo elegir en qué chain depositar?">
-    Si, puedes usar el parametro `preferredChain` en los intents.
-    Sin embargo, Pan optimizara automaticamente si detecta una mejor opcion
+    Si, puedes usar el parámetro `preferredChain` en los intents.
+    Sin embargo, pan optimizara automáticamente si detecta una mejor opcion
     considerando:
-    - Donde estan tus fondos actualmente
+    - Donde están tus fondos actualmente
     - Costos de bridge vs. beneficio de APY
     - Liquidez disponible
   </Accordion>
 
-  <Accordion title="¿Qué pasa si deposito en Ethereum y quiero mover a Arbitrum?">
-    Pan maneja esto automaticamente. Si ejecutas un intent de `lend` con
-    `preferredChain: 'arbitrum'` pero tus fondos estan en Ethereum, Pan:
+  <Accordion title="¿Qué pasa si depósito en Ethereum y quiero mover a Arbitrum?">
+    pan maneja esto automaticamente. Si ejecutas un intent de `lend` con
+    `preferredChain: 'arbitrum'` pero tus fondos están en Ethereum, pan:
     1. Retira de Aave Ethereum (si aplica)
     2. Ejecuta bridge via Across
     3. Deposita en Aave Arbitrum
@@ -295,7 +295,7 @@ Las siguientes chains estan en evaluacion para futuras versiones:
     Depende de las chains involucradas:
     - L2 a L2 (Arbitrum ↔ Base): 2-10 minutos
     - Ethereum a L2: 10-30 minutos
-    - L2 a Ethereum: Puede tomar hasta 7 dias (retiro oficial)
+    - L2 a Ethereum: Puede tomar hasta 7 días (retiro oficial)
       pero usamos bridges rapidos que toman minutos
   </Accordion>
 </AccordionGroup>

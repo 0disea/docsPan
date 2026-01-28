@@ -3,9 +3,9 @@ title: "Monitorear Estado"
 description: "Como hacer seguimiento de intents y transacciones"
 ---
 
-Esta guia cubre las mejores practicas para monitorear el estado de intents, mostrar progreso a usuarios, y manejar diferentes escenarios.
+Esta guía cubre las mejores prácticas para monitorear el estado de intents, mostrar progreso a usuarios, y manejar diferentes escenarios.
 
-## Consulta Basica de Estado
+## Consulta Básica de Estado
 
 <CodeGroup>
 ```javascript JavaScript
@@ -17,7 +17,7 @@ console.log('Resultados:', intent.results);
 ```
 
 ```bash cURL
-curl -X GET "https://api.pan.dev/v1/intents/intent_xyz789" \
+curl -X GET "https://api.pan.tech/v1/intents/intent_xyz789" \
   -H "Authorization: Bearer $PAN_API_KEY"
 ```
 </CodeGroup>
@@ -30,15 +30,15 @@ pending → planning → executing → completed
                        failed
 ```
 
-| Estado | Descripcion | Duracion tipica |
+| Estado | Descripción | Duracion típica |
 |--------|-------------|-----------------|
 | `pending` | Creado, esperando procesamiento | < 1 segundo |
 | `planning` | Analizando y generando plan | 2-5 segundos |
 | `executing` | Ejecutando transacciones | 1-10 minutos |
 | `completed` | Todas las operaciones exitosas | - |
-| `failed` | Error durante ejecucion | - |
+| `failed` | Error durante ejecución | - |
 
-## Polling Basico
+## Polling Básico
 
 ```javascript
 async function esperarIntent(intentId, options = {}) {
@@ -350,7 +350,7 @@ function ResultsSummary({ results }) {
 }
 ```
 
-## Verificar Transacciones On-chain
+## Verificar Transacciónes On-chain
 
 ```javascript
 const explorers = {
@@ -368,13 +368,13 @@ function getExplorerUrl(chain, txHash) {
 }
 
 // Mostrar transacciones del intent
-function mostrarTransacciones(intent) {
+function mostrarTransacciónes(intent) {
   if (!intent.results?.transactions) {
     console.log('Sin transacciones aun');
     return;
   }
 
-  console.log('\nTransacciones:');
+  console.log('\nTransacciónes:');
   intent.results.transactions.forEach((tx, i) => {
     console.log(`\n${i + 1}. ${tx.type}`);
     console.log(`   Chain: ${tx.chain}`);
@@ -394,8 +394,8 @@ async function monitorearConNotificaciones(intentId, notificar) {
   if (intent.status === 'completed') {
     await notificar({
       tipo: 'exito',
-      titulo: 'Operacion completada',
-      mensaje: `Tu deposito de ${intent.amount} ${intent.asset} fue exitoso`,
+      titulo: 'Operación completada',
+      mensaje: `Tu depósito de ${intent.amount} ${intent.asset} fue exitoso`,
       datos: {
         apy: intent.results.apy,
         txHash: intent.results.transactions.at(-1)?.txHash
@@ -407,7 +407,7 @@ async function monitorearConNotificaciones(intentId, notificar) {
   if (intent.status === 'failed') {
     await notificar({
       tipo: 'error',
-      titulo: 'Operacion fallida',
+      titulo: 'Operación fallida',
       mensaje: intent.error.message,
       datos: {
         codigo: intent.error.code,
@@ -463,7 +463,7 @@ await monitorearConNotificaciones(intentId, async (n) => {
 });
 ```
 
-## Proximos Pasos
+## Próximos Pasos
 
 <CardGroup cols={2}>
   <Card
@@ -488,10 +488,10 @@ await monitorearConNotificaciones(intentId, async (n) => {
     Referencia del endpoint
   </Card>
   <Card
-    title="Integracion"
+    title="Integración"
     icon="puzzle-piece"
     href="/guias/mejores-practicas/integracion"
   >
-    Patrones de integracion
+    Patrones de integración
   </Card>
 </CardGroup>

@@ -1,11 +1,11 @@
 ---
-title: "Autenticacion API"
-description: "Como autenticar requests a Pan API"
+title: "Autenticación API"
+description: "Como autenticar requests a pan API"
 ---
 
 ## API Key
 
-El metodo principal de autenticacion es usando una API key en el header `Authorization`:
+El método principal de autenticación es usando una API key en el header `Authorization`:
 
 ```bash
 Authorization: Bearer pan_sk_tu_api_key
@@ -15,12 +15,12 @@ Authorization: Bearer pan_sk_tu_api_key
 
 <CodeGroup>
 ```bash cURL
-curl -X GET https://api.pan.dev/v1/yields \
+curl -X GET https://api.pan.tech/v1/yields \
   -H "Authorization: Bearer pan_sk_a1b2c3d4e5f6..."
 ```
 
 ```javascript JavaScript
-fetch('https://api.pan.dev/v1/yields', {
+fetch('https://api.pan.tech/v1/yields', {
   headers: {
     'Authorization': `Bearer ${process.env.PAN_API_KEY}`
   }
@@ -29,7 +29,7 @@ fetch('https://api.pan.dev/v1/yields', {
 
 ```python Python
 requests.get(
-    'https://api.pan.dev/v1/yields',
+    'https://api.pan.tech/v1/yields',
     headers={'Authorization': f'Bearer {API_KEY}'}
 )
 ```
@@ -46,7 +46,7 @@ pan_sk_a1b2c3d4e5f6789012345678901234567890abcdef1234567890abcdef123456
 
 ### Obtener API Key
 
-1. Registrate en [app.pan.dev](https://app.pan.dev)
+1. Registrate en [app.pan.tech](https://app.pan.tech)
 2. Ve a **Settings > API Keys**
 3. Click en **Create New Key**
 4. Copia la key inmediatamente
@@ -78,7 +78,7 @@ Para endpoints de solo lectura, puedes usar el protocolo X402 de micropagos:
 
 $0.001 USD por request en USDC (Base, Ethereum, o Sei)
 
-## Errores de Autenticacion
+## Errores de Autenticación
 
 ### 401 Unauthorized
 
@@ -104,8 +104,8 @@ $0.001 USD por request en USDC (Base, Ethereum, o Sei)
 ```
 
 **Causas:**
-- Limite de plan excedido
-- Creditos agotados
+- Límite de plan excedido
+- Créditos agotados
 - Acceso a recurso no permitido
 
 ## Mejores Practicas

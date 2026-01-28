@@ -1,6 +1,6 @@
 ---
 title: "Fintech Basico"
-description: "Ejemplo completo de integracion con una fintech"
+description: "Ejemplo completo de integración con una fintech"
 ---
 
 ## Caso de Uso
@@ -24,7 +24,7 @@ Una fintech latinoamericana quiere ofrecer a sus usuarios:
 │                       (Node.js + Express)                           │
 │                                                                     │
 │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐              │
-│  │ Auth Service │  │ Pan Service  │  │ User Service │              │
+│  │ Auth Service │  │ pan Service  │  │ User Service │              │
 │  └──────────────┘  └──────────────┘  └──────────────┘              │
 │                                                                     │
 │  ┌──────────────────────────────────────────────────┐              │
@@ -34,7 +34,7 @@ Una fintech latinoamericana quiere ofrecer a sus usuarios:
                                   │
                                   ▼
 ┌─────────────────────────────────────────────────────────────────────┐
-│                           Pan API                                   │
+│                           pan API                                   │
 │              (Wallets + Intents + Yields)                           │
 └─────────────────────────────────────────────────────────────────────┘
                                   │
@@ -47,7 +47,7 @@ Una fintech latinoamericana quiere ofrecer a sus usuarios:
 
 ## Implementacion Paso a Paso
 
-### 1. Configuracion del Proyecto
+### 1. Configuración del Proyecto
 
 ```bash
 # Crear proyecto
@@ -81,7 +81,7 @@ model User {
   email         String   @unique
   passwordHash  String
 
-  // Pan integration
+  // pan integration
   panWalletId   String?  @unique
   walletAddress String?
 
@@ -115,7 +115,7 @@ model Transaction {
   userId        String
   user          User     @relation(fields: [userId], references: [id])
 
-  // Pan tracking
+  // pan tracking
   panIntentId   String?  @unique
 
   // Transaction details
@@ -156,7 +156,7 @@ enum TransactionStatus {
 }
 ```
 
-### 3. Servicio de Pan
+### 3. Servicio de pan
 
 ```typescript
 // src/services/pan.service.ts
@@ -224,7 +224,7 @@ class PanService {
       return wallet;
     } catch (error) {
       if (error instanceof PanError && error.code === 'WALLET_ALREADY_EXISTS') {
-        // Wallet existe pero no esta en nuestra DB
+        // Wallet existe pero no está en nuestra DB
         const wallet = await this.pan.wallet.get(userId);
 
         await prisma.user.update({
@@ -312,7 +312,7 @@ class PanService {
       throw new Error(`Fondos insuficientes. Tienes ${totalUSDC} USDC, necesitas ${amount} USDC`);
     }
 
-    // Crear transaccion en DB
+    // Crear transacción en DB
     const transaction = await prisma.transaction.create({
       data: {
         userId,
@@ -332,7 +332,7 @@ class PanService {
         asset: 'USDC'
       });
 
-      // Actualizar transaccion con intent
+      // Actualizar transacción con intent
       await prisma.transaction.update({
         where: { id: transaction.id },
         data: {
@@ -370,7 +370,7 @@ class PanService {
       throw new Error('Usuario no tiene wallet');
     }
 
-    // Crear transaccion
+    // Crear transacción
     const transaction = await prisma.transaction.create({
       data: {
         userId,
@@ -478,7 +478,7 @@ class PanService {
       where: { id: transactionId },
       data: {
         status: 'FAILED',
-        errorMessage: 'Timeout esperando confirmacion'
+        errorMessage: 'Timeout esperando confirmación'
       }
     });
   }
@@ -622,7 +622,7 @@ router.get('/transactions', authMiddleware, async (req, res) => {
   }
 });
 
-// Estado de transaccion especifica
+// Estado de transacción especifica
 router.get('/transactions/:id', authMiddleware, async (req, res) => {
   try {
     const { id } = req.params;
@@ -633,13 +633,13 @@ router.get('/transactions/:id', authMiddleware, async (req, res) => {
     });
 
     if (!transaction) {
-      return res.status(404).json({ error: 'Transaccion no encontrada' });
+      return res.status(404).json({ error: 'Transacción no encontrada' });
     }
 
     res.json(transaction);
   } catch (error) {
-    console.error('Error obteniendo transaccion:', error);
-    res.status(500).json({ error: 'Error obteniendo transaccion' });
+    console.error('Error obteniendo transacción:', error);
+    res.status(500).json({ error: 'Error obteniendo transacción' });
   }
 });
 
@@ -693,26 +693,26 @@ PORT=3000
 # Database
 DATABASE_URL=postgresql://user:password@localhost:5432/fintech
 
-# Pan API
+# pan API
 PAN_API_KEY=pan_sk_test_xxxxx
 
-# JWT (para autenticacion de usuarios)
+# JWT (para autenticación de usuarios)
 JWT_SECRET=tu-secreto-muy-seguro
 ```
 
 ## Flujo de Usuario
 
-### Registro y Creacion de Wallet
+### Registro y Creación de Wallet
 
 ```typescript
 // El usuario se registra en la app
 const user = await registerUser(email, password);
 
-// Automaticamente creamos su wallet Pan
+// Automáticamente creamos su wallet pan
 const wallet = await panService.getOrCreateWallet(user.id, email);
 
-// Usuario puede ver su direccion para depositos
-console.log(`Direccion para depositos: ${wallet.address}`);
+// Usuario puede ver su dirección para depositos
+console.log(`Dirección para depositos: ${wallet.address}`);
 ```
 
 ### Deposito en Cuenta de Ahorros
@@ -730,9 +730,9 @@ const tx = await panService.deposit(userId, 100);
 console.log(`Deposito iniciado: ${tx.id}`);
 
 // 3. El intent se ejecuta automaticamente
-// - Pan consolida USDC de todas las chains
+// - pan consolida USDC de todas las chains
 // - Deposita en Aave para generar rendimiento
-// - La transaccion se marca como completada
+// - La transacción se marca como completada
 ```
 
 ### Consulta de Rendimientos
@@ -757,7 +757,7 @@ console.log(`Ganancias anuales estimadas: $${yearlyEarnings.toFixed(2)}`);
 // Usuario quiere retirar a su wallet
 const tx = await panService.withdraw(userId, 50);
 
-// O a una direccion externa
+// O a una dirección externa
 const tx = await panService.withdraw(userId, 50, '0xExternalAddress...');
 ```
 
@@ -772,7 +772,7 @@ import rateLimit from 'express-rate-limit';
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutos
   max: 100, // max requests por ventana
-  message: 'Demasiadas solicitudes, intenta mas tarde'
+  message: 'Demasiadas solicitudes, intenta más tarde'
 });
 
 app.use('/api/', limiter);
@@ -788,7 +788,7 @@ const logger = pino({
   level: process.env.LOG_LEVEL || 'info'
 });
 
-// Metricas
+// Métricas
 import { Counter, Histogram } from 'prom-client';
 
 const depositCounter = new Counter({
@@ -823,15 +823,15 @@ intentQueue.add({ intentId, transactionId });
 
 ## Resultado Final
 
-Con esta implementacion, tu fintech puede:
+Con está implementación, tu fintech puede:
 
-1. **Crear cuentas** automaticamente para cada usuario
+1. **Crear cuentas** automáticamente para cada usuario
 2. **Aceptar depositos** en cualquier chain soportada
-3. **Generar rendimiento** automatico con los mejores APYs
+3. **Generar rendimiento** automático con los mejores APYs
 4. **Procesar retiros** de forma instantanea
 5. **Mostrar historial** completo de transacciones
 
-Todo esto con una integracion simple a Pan API, sin necesidad de:
+Todo esto con una integración simple a pan API, sin necesidad de:
 - Gestionar wallets manualmente
 - Interactuar directamente con blockchains
 - Implementar bridges o swaps

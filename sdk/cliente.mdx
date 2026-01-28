@@ -1,23 +1,23 @@
 ---
 title: "Cliente"
-description: "Configuracion avanzada del cliente Pan"
+description: "Configuración avanzada del cliente pan"
 ---
 
-## Instanciacion
+## Instanciación
 
 ```typescript
 import { Pan } from '@pan/sdk';
 
 const pan = new Pan({
   apiKey: process.env.PAN_API_KEY!,
-  baseURL: 'https://api.pan.dev/v1',
+  baseURL: 'https://api.pan.tech/v1',
   timeout: 30000,
   debug: false,
   retries: 3
 });
 ```
 
-## Multiples Clientes
+## Múltiples Clientes
 
 Para diferentes entornos o API keys:
 
@@ -25,13 +25,13 @@ Para diferentes entornos o API keys:
 // Produccion
 const panProd = new Pan({
   apiKey: process.env.PAN_API_KEY_PROD!,
-  baseURL: 'https://api.pan.dev/v1'
+  baseURL: 'https://api.pan.tech/v1'
 });
 
 // Staging
 const panStaging = new Pan({
   apiKey: process.env.PAN_API_KEY_STAGING!,
-  baseURL: 'https://api-staging.pan.dev/v1'
+  baseURL: 'https://api-staging.pan.tech/v1'
 });
 ```
 
@@ -46,13 +46,13 @@ const pan = new Pan({
 });
 
 // Logs:
-// [Pan] POST /wallets { userId: 'user_123' }
-// [Pan] 201 Created { id: 'pan_wallet_...', ... }
+// [pan] POST /wallets { userId: 'user_123' }
+// [pan] 201 Created { id: 'pan_wallet_...', ... }
 ```
 
-## Reintentos Automaticos
+## Reintentos Automáticos
 
-El SDK reintenta automaticamente en errores transitorios:
+El SDK reintenta automáticamente en errores transitorios:
 
 ```typescript
 const pan = new Pan({
@@ -103,7 +103,7 @@ const pan = new Pan({ ... });
 pan.wallet    // Operaciones de wallet
 pan.yields    // Consulta de APYs
 
-// Metodos de intent directos
+// Métodos de intent directos
 pan.lend()      // Crear intent de lending
 pan.withdraw()  // Crear intent de withdraw
 pan.bridge()    // Crear intent de bridge
@@ -112,7 +112,7 @@ pan.bridge()    // Crear intent de bridge
 pan.getIntent() // Obtener estado de intent
 ```
 
-## Patron Singleton
+## Patrón Singleton
 
 Para aplicaciones con un solo cliente:
 

@@ -1,9 +1,9 @@
 ---
-title: "Instalacion"
-description: "Como instalar y configurar el SDK de Pan"
+title: "Instalación"
+description: "Como instalar y configurar el SDK de pan"
 ---
 
-El SDK oficial de Pan para JavaScript/TypeScript simplifica la integracion con Pan API.
+El SDK oficial de pan para JavaScript/TypeScript simplifica la integración con pan API.
 
 ## Instalacion
 
@@ -25,7 +25,7 @@ bun add @pan/sdk
 ```
 </CodeGroup>
 
-## Configuracion Basica
+## Configuración Basica
 
 ```typescript
 import { Pan } from '@pan/sdk';
@@ -35,7 +35,7 @@ const pan = new Pan({
 });
 ```
 
-## Opciones de Configuracion
+## Opciones de Configuración
 
 ```typescript
 const pan = new Pan({
@@ -43,35 +43,35 @@ const pan = new Pan({
   apiKey: 'pan_sk_...',
 
   // Opcionales
-  baseURL: 'https://api.pan.dev/v1',  // URL base de la API
+  baseURL: 'https://api.pan.tech/v1',  // URL base de la API
   timeout: 30000,                       // Timeout en ms (default: 30000)
   debug: false,                         // Modo debug (default: false)
-  retries: 3,                          // Reintentos automaticos (default: 3)
+  retries: 3,                          // Reintentos automáticos (default: 3)
 });
 ```
 
-| Opcion | Tipo | Default | Descripcion |
+| Opcion | Tipo | Default | Descripción |
 |--------|------|---------|-------------|
-| `apiKey` | string | - | Tu API key de Pan |
-| `baseURL` | string | `https://api.pan.dev/v1` | URL base |
+| `apiKey` | string | - | Tu API key de pan |
+| `baseURL` | string | `https://api.pan.tech/v1` | URL base |
 | `timeout` | number | 30000 | Timeout en milisegundos |
 | `debug` | boolean | false | Activa logs de debug |
 | `retries` | number | 3 | Reintentos en errores |
 
-## Verificar Instalacion
+## Verificar Instalación
 
 ```typescript
 import { Pan } from '@pan/sdk';
 
 const pan = new Pan({ apiKey: process.env.PAN_API_KEY });
 
-// Verificar conexion
+// Verificar conexión
 try {
   const yields = await pan.yields.getAll();
-  console.log('Conexion exitosa!');
+  console.log('Conexión exitosa!');
   console.log('Mejor APY:', yields.best.apy);
 } catch (error) {
-  console.error('Error de conexion:', error.message);
+  console.error('Error de conexión:', error.message);
 }
 ```
 
@@ -121,7 +121,7 @@ const intent: Intent = await pan.lend({
 });
 ```
 
-## Proximos Pasos
+## Próximos Pasos
 
 <CardGroup cols={2}>
   <Card
@@ -129,7 +129,7 @@ const intent: Intent = await pan.lend({
     icon="plug"
     href="/sdk/cliente"
   >
-    Configuracion avanzada del cliente
+    Configuración avanzada del cliente
   </Card>
   <Card
     title="Wallets"

@@ -1,13 +1,13 @@
 ---
-title: "Planes de Ejecucion"
-description: "Como Pan genera y ejecuta estrategias optimizadas"
+title: "Planes de Ejecución"
+description: "Como pan genera y ejecuta estrategias optimizadas"
 ---
 
-Los Planes de Ejecucion son estrategias detalladas que Pan genera automaticamente para lograr tus intents. Describen exactamente que operaciones se realizaran, en que orden, y con que costos esperados.
+Los Planes de Ejecución son estrategias detalladas que pan genera automáticamente para lograr tus intents. Describen exactamente que operaciones se realizaran, en que orden, y con que costos esperados.
 
-## Como Funciona la Planificacion
+## Como Funcióna la Planificación
 
-Cuando creas un intent, Pan no ejecuta inmediatamente. Primero pasa por una fase de planificacion sofisticada:
+Cuando creas un intent, pan no ejecuta inmediatamente. Primero pasa por una fase de planificación sofisticada:
 
 <Steps>
   <Step title="Analisis de Estado">
@@ -16,15 +16,15 @@ Cuando creas un intent, Pan no ejecuta inmediatamente. Primero pasa por una fase
   <Step title="Evaluacion de Protocolos">
     Obtener APYs de Aave en cada chain y verificar liquidez
   </Step>
-  <Step title="Optimizacion de Ruta">
+  <Step title="Optimización de Ruta">
     Calcular opciones de bridge y estimar costos de gas
   </Step>
-  <Step title="Generacion de Plan">
+  <Step title="Generación de Plan">
     Ordenar operaciones y calcular tiempos estimados
   </Step>
 </Steps>
 
-## Estructura de un Plan de Ejecucion
+## Estructura de un Plan de Ejecución
 
 ```json
 {
@@ -74,7 +74,7 @@ Cuando creas un intent, Pan no ejecuta inmediatamente. Primero pasa por una fase
 
 ### direct-deposit
 
-**Cuando se usa:** Los fondos ya estan en la chain con mejor yield.
+**Cuando se usa:** Los fondos ya están en la chain con mejor yield.
 
 ```
 Estado del wallet:
@@ -82,7 +82,7 @@ Estado del wallet:
 - Mejor APY: Base (8.52%)
 
 Estrategia: direct-deposit
-- Solo deposito directo a Aave
+- Solo depósito directo a Aave
 - Gas estimado: ~300,000
 ```
 
@@ -106,7 +106,7 @@ Estrategia: direct-deposit
 
 ### bridge-and-lend
 
-**Cuando se usa:** Los fondos estan concentrados en una chain diferente a la optima.
+**Cuando se usa:** Los fondos están concentrados en una chain diferente a la optima.
 
 ```
 Estado del wallet:
@@ -148,7 +148,7 @@ Estrategia: bridge-and-lend
 
 ### multi-bridge-and-lend
 
-**Cuando se usa:** Los fondos estan distribuidos en multiples chains.
+**Cuando se usa:** Los fondos están distribuidos en múltiples chains.
 
 ```
 Estado del wallet:
@@ -243,7 +243,7 @@ Mueve tokens entre chains usando Across Protocol.
 **Campos importantes:**
 - `provider`: Siempre `across` (Across Protocol)
 - `estimatedFee`: Fee del bridge en USD
-- `fillDeadline`: Tiempo maximo para completar (segundos)
+- `fillDeadline`: Tiempo máximo para completar (segundos)
 
 ### Deposit
 
@@ -265,7 +265,7 @@ Deposita tokens en un protocolo de lending.
 **Campos importantes:**
 - `protocol`: Siempre `aave` actualmente
 - `apy`: APY esperado
-- `amount`: Cantidad despues de fees de bridge
+- `amount`: Cantidad después de fees de bridge
 
 ### Withdraw
 
@@ -299,20 +299,20 @@ Intercambia un token por otro (en desarrollo).
 }
 ```
 
-## Ejecucion del Plan
+## Ejecución del Plan
 
-Una vez generado el plan, Pan ejecuta cada paso en secuencia:
+Una vez generado el plan, pan ejecuta cada paso en secuencia:
 
 **Para cada paso en el plan:**
 
 <Steps>
   <Step title="Preparacion">
-    Verificar balance y gas disponible, preparar datos de la transaccion
+    Verificar balance y gas disponible, preparar datos de la transacción
   </Step>
-  <Step title="Ejecucion">
+  <Step title="Ejecución">
     Firmar via Privy, enviar a blockchain, obtener txHash
   </Step>
-  <Step title="Confirmacion">
+  <Step title="Confirmación">
     Esperar 1-2 bloques, verificar exito, actualizar estado
   </Step>
   <Step title="Registro">
@@ -322,21 +322,21 @@ Una vez generado el plan, Pan ejecuta cada paso en secuencia:
 
 Si un paso falla, se registra el error y el intent se marca como `failed`. Si todos los pasos completan, el intent queda `completed`.
 
-### Detalle de Ejecucion por Paso
+### Detalle de Ejecución por Paso
 
 Para cada paso en el plan:
 
-| Fase | Accion | Resultado |
+| Fase | Acción | Resultado |
 |------|--------|-----------|
 | Precondiciones | Engine verifica balance y gas | Continua o falla |
-| Firma | Engine solicita firma a Privy | Transaccion firmada |
+| Firma | Engine solicita firma a Privy | Transacción firmada |
 | Envio | Engine envia txn a blockchain | Recibe txHash |
-| Confirmacion | Engine espera receipt | Loop hasta confirmado |
+| Confirmación | Engine espera receipt | Loop hasta confirmado |
 | Registro | Guardar en DB | completedSteps++ o error |
 
-## Monitorear Ejecucion
+## Monitorear Ejecución
 
-Durante la ejecucion, puedes ver el progreso en tiempo real:
+Durante la ejecución, puedes ver el progreso en tiempo real:
 
 ```javascript
 const intent = await pan.getIntent(intentId);
@@ -346,7 +346,7 @@ console.log('Plan:', intent.executionPlan);
 console.log('Resultados:', intent.results);
 ```
 
-### Respuesta durante ejecucion
+### Respuesta durante ejecución
 
 ```json
 {
@@ -423,9 +423,9 @@ console.log('Resultados:', intent.results);
 }
 ```
 
-## Optimizacion de Costos
+## Optimización de Costos
 
-Pan optimiza costos considerando multiples factores:
+pan optimiza costos considerando múltiples factores:
 
 ### Costos de Bridge
 
@@ -452,7 +452,7 @@ Ejemplo en Base:
 
 ### Decision de Bridge
 
-Pan decide si hacer bridge basandose en:
+pan decide si hacer bridge basandose en:
 
 ```
 APY_diferencia = APY_mejor_chain - APY_chain_actual
@@ -470,7 +470,7 @@ Si no:
 ### Durante Bridge
 
 Si un bridge falla:
-1. Pan espera hasta `fillDeadline`
+1. pan espera hasta `fillDeadline`
 2. Si no completa, marca el paso como fallido
 3. El intent queda en estado `failed`
 4. Los fondos permanecen en la chain origen
@@ -492,9 +492,9 @@ Si un bridge falla:
 
 ### Durante Deposit
 
-Si un deposito falla:
-1. Los fondos ya estan en la chain destino
-2. Pan intenta diagnosticar el error
+Si un depósito falla:
+1. Los fondos ya están en la chain destino
+2. pan intenta diagnosticar el error
 3. Puedes reintentar con un nuevo intent
 
 ```json
@@ -511,7 +511,7 @@ Si un deposito falla:
 }
 ```
 
-## Verificar Transacciones
+## Verificar Transacciónes
 
 Todas las transacciones son verificables on-chain:
 
@@ -536,7 +536,7 @@ intent.results?.transactions?.forEach(tx => {
 });
 ```
 
-## Proximos Pasos
+## Próximos Pasos
 
 <CardGroup cols={2}>
   <Card
@@ -544,7 +544,7 @@ intent.results?.transactions?.forEach(tx => {
     icon="play"
     href="/guias/ejecutar-intents"
   >
-    Guia practica de ejecucion
+    Guía práctica de ejecución
   </Card>
   <Card
     title="Monitorear Estado"

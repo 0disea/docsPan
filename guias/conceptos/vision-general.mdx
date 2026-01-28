@@ -1,20 +1,20 @@
 ---
 title: "Vision General"
-description: "Entiende los conceptos fundamentales de Pan API"
+description: "Entiende los conceptos fundamentales de pan API"
 ---
 
-Pan es infraestructura financiera para fintechs. Te permite ofrecer productos avanzados a tus usuarios sin construir la complejidad internamente.
+pan es infraestructura financiera para fintechs. Te permite ofrecer productos avanzados a tus usuarios sin construir la complejidad internamente.
 
-La API esta construida alrededor de tres conceptos fundamentales: **Wallets**, **Intents**, y **Planes de Ejecucion**.
+La API está construida alrededor de tres conceptos fundamentales: **Wallets**, **Intents**, y **Planes de Ejecución**.
 
 {/* ## Arquitectura de Alto Nivel
 
-| Capa | Componentes | Funcion |
+| Capa | Componentes | Función |
 |------|-------------|---------|
-| **Tu App** | SDK / REST Client | Envia requests a Pan |
-| **Pan API** | Wallets, Intents, Yields | Servicios principales |
-| **Planificacion** | Intent Planner | Analiza y optimiza estrategias |
-| **Ejecucion** | Execution Engine | Ejecuta bridges, swaps, deposits |
+| **Tu App** | SDK / REST Client | Envia requests a pan |
+| **pan API** | Wallets, Intents, Yields | Servicios principales |
+| **Planificación** | Intent Planner | Analiza y optimiza estrategias |
+| **Ejecución** | Execution Engine | Ejecuta bridges, swaps, deposits |
 | **Blockchains** | Ethereum, Arbitrum, Base | Destino final de operaciones |
 */}
 
@@ -33,10 +33,10 @@ La API esta construida alrededor de tres conceptos fundamentales: **Wallets**, *
     icon="target"
     href="/guias/conceptos/intents"
   >
-    Objetivos de alto nivel que Pan ejecuta automaticamente
+    Objetivos de alto nivel que pan ejecuta automaticamente
   </Card>
   <Card
-    title="Planes de Ejecucion"
+    title="Planes de Ejecución"
     icon="route"
     href="/guias/conceptos/planes-ejecucion"
   >
@@ -44,23 +44,23 @@ La API esta construida alrededor de tres conceptos fundamentales: **Wallets**, *
   </Card>
 </CardGroup>
 
-## El Flujo de Pan
+## El Flujo de pan
 
 <Steps>
   <Step title="Crea una Wallet">
-    Las wallets son la base de Pan. Cada wallet soporta multiples blockchains con una sola direccion, eliminando la necesidad de manejar direcciones separadas por chain.
+    Las wallets son la base de pan. Cada wallet soporta múltiples blockchains con una sola dirección, eliminando la necesidad de manejar direcciones separadas por chain.
 
     ```javascript
     const wallet = await pan.wallet.create({
       userId: 'usuario_123'
     });
     // wallet.address: 0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb
-    // Funciona en Ethereum, Arbitrum, Base, etc.
+    // Funcióna en Ethereum, Arbitrum, Base, etc.
     ```
   </Step>
 
   <Step title="Consulta Balances">
-    Consulta balances de todas las chains y tokens con una sola llamada API. Pan maneja la complejidad de consultar multiples blockchains y formatear los resultados.
+    Consulta balances de todas las chains y tokens con una sola llamada API. pan maneja la complejidad de consultar múltiples blockchains y formatear los resultados.
 
     ```javascript
     const balances = await pan.wallet.getBalances(wallet.id);
@@ -73,20 +73,20 @@ La API esta construida alrededor de tres conceptos fundamentales: **Wallets**, *
   </Step>
 
   <Step title="Crea un Intent">
-    Expresa lo que quieres lograr (ej. "prestar $1000 USDC") en lugar de especificar transacciones exactas. El sistema inteligente de Pan maneja el resto.
+    Expresa lo que quieres lograr (ej. "prestar $1000 USDC") en lugar de especificar transacciones exactas. El sistema inteligente de pan maneja el resto.
 
     ```javascript
     const intent = await pan.lend({
       walletId: wallet.id,
       amount: 1000,
       asset: 'USDC'
-      // No especificas chain - Pan encuentra el mejor APY
+      // No específicas chain - pan encuentra el mejor APY
     });
     ```
   </Step>
 
-  <Step title="Pan Genera un Plan">
-    Pan analiza:
+  <Step title="pan Genera un Plan">
+    pan analiza:
     - Balances actuales del wallet
     - APYs disponibles en cada chain
     - Costos de bridge y gas
@@ -107,8 +107,8 @@ La API esta construida alrededor de tres conceptos fundamentales: **Wallets**, *
     ```
   </Step>
 
-  <Step title="Monitorea Ejecucion">
-    Sigue el progreso en tiempo real. Pan proporciona actualizaciones detalladas, planes de ejecucion, y reportes de errores completos.
+  <Step title="Monitorea Ejecución">
+    Sigue el progreso en tiempo real. pan proporciona actualizaciones detalladas, planes de ejecución, y reportes de errores completos.
 
     ```javascript
     const status = await pan.getIntent(intent.id);
@@ -124,7 +124,7 @@ La API esta construida alrededor de tres conceptos fundamentales: **Wallets**, *
   <Card title="Basado en Intents" icon="bullseye">
     **Expresa objetivos, no transacciones**
 
-    En lugar de escribir codigo para:
+    En lugar de escribir código para:
     1. Verificar balances
     2. Aprobar tokens
     3. Calcular rutas de bridge
@@ -135,22 +135,22 @@ La API esta construida alrededor de tres conceptos fundamentales: **Wallets**, *
   </Card>
 
   <Card title="Multi-chain Nativo" icon="link">
-    **Una direccion, todas las chains**
+    **Una dirección, todas las chains**
 
-    - Direccion unica funciona en ETH, Arbitrum, Base, etc.
+    - Dirección unica funciona en ETH, Arbitrum, Base, etc.
     - Balances unificados con una sola consulta
-    - Bridges automaticos cuando es necesario
+    - Bridges automáticos cuando es necesario
     - Sin manejo de direcciones por chain
   </Card>
 
   <Card title="Automatizado" icon="bolt">
     **Cero gestion de blockchain**
 
-    Pan maneja automaticamente:
+    pan maneja automaticamente:
     - Nonces de transacciones
     - Precios de gas
     - Reintents en caso de fallo
-    - Confirmaciones de transaccion
+    - Confirmaciones de transacción
     - Secuencia de operaciones
   </Card>
 
@@ -166,7 +166,7 @@ La API esta construida alrededor de tres conceptos fundamentales: **Wallets**, *
 
 ## Modelo de Datos
 
-Pan usa un modelo de datos jerarquico:
+pan usa un modelo de datos jerarquico:
 
 ```
 Developer
@@ -178,25 +178,25 @@ Developer
 
 <AccordionGroup>
   <Accordion title="Developer">
-    | Campo | Tipo | Descripcion |
+    | Campo | Tipo | Descripción |
     |-------|------|-------------|
-    | `id` | string | Identificador unico |
+    | `id` | string | Identificador único |
     | `email` | string | Email del desarrollador |
-    | `plan` | string | Plan de suscripcion |
+    | `plan` | string | Plan de suscripción |
   </Accordion>
 
   <Accordion title="Wallet">
-    | Campo | Tipo | Descripcion |
+    | Campo | Tipo | Descripción |
     |-------|------|-------------|
-    | `id` | string | ID unico (`pan_wallet_...`) |
+    | `id` | string | ID único (`pan_wallet_...`) |
     | `userId` | string | Usuario en tu app |
-    | `address` | string | Direccion blockchain |
+    | `address` | string | Dirección blockchain |
   </Accordion>
 
   <Accordion title="Intent">
-    | Campo | Tipo | Descripcion |
+    | Campo | Tipo | Descripción |
     |-------|------|-------------|
-    | `id` | string | ID unico |
+    | `id` | string | ID único |
     | `action` | string | lend, withdraw, bridge |
     | `status` | string | pending, executing, completed |
   </Accordion>
@@ -206,34 +206,34 @@ Developer
 
 Los desarrolladores se autentican usando API keys que identifican su cuenta. Cada cuenta de desarrollador tiene:
 
-- **Plan de suscripcion**: Determina limites (wallets, creditos)
+- **Plan de suscripción**: Determina límites (wallets, creditos)
 - **Multiples API keys**: Para diferentes entornos
-- **Multiples wallets**: Para diferentes usuarios en tu aplicacion
+- **Multiples wallets**: Para diferentes usuarios en tu aplicación
 
 ### Wallets
 
-Las wallets representan cuentas de usuarios en tu aplicacion. Cada wallet:
+Las wallets representan cuentas de usuarios en tu aplicación. Cada wallet:
 
-- Tiene un identificador unico (`walletId`)
-- Soporta multiples blockchains con una sola direccion
-- Puede ejecutar multiples intents
+- Tiene un identificador único (`walletId`)
+- Soporta múltiples blockchains con una sola dirección
+- Puede ejecutar múltiples intents
 - Mantiene balances en todas las chains soportadas
 
 ### Intents
 
-Los intents representan objetivos financieros de alto nivel. Cuando creas un intent, Pan:
+Los intents representan objetivos financieros de alto nivel. Cuando creas un intent, pan:
 
 1. Analiza el estado actual del wallet
 2. Evalua protocolos DeFi disponibles
-3. Genera un plan de ejecucion optimizado
+3. Genera un plan de ejecución optimizado
 4. Ejecuta el plan automaticamente
 
-### Planes de Ejecucion
+### Planes de Ejecución
 
-Los planes de ejecucion son estrategias detalladas que describen como Pan lograra un intent. Incluyen:
+Los planes de ejecución son estrategias detalladas que describen como pan lograra un intent. Incluyen:
 
 - Lista de operaciones (swaps, bridges, deposits)
-- Orden de ejecucion
+- Orden de ejecución
 - Costos esperados y timing
 - Estrategias alternativas si es necesario
 
@@ -250,7 +250,7 @@ Veamos un ejemplo real paso a paso:
     });
     ```
 
-    **Resultado**: Wallet creada con direccion `0x742d35Cc...`
+    **Resultado**: Wallet creada con dirección `0x742d35Cc...`
   </Step>
 
   <Step title="Consultar balance">
@@ -283,7 +283,7 @@ Veamos un ejemplo real paso a paso:
     });
     ```
 
-    Pan analiza y crea un plan:
+    pan analiza y crea un plan:
     - **Estrategia**: multi-bridge (consolidar en mejor yield)
     - **Paso 1**: Bridge 500 USDC de Ethereum a Base
     - **Paso 2**: Bridge 500 USDC de Arbitrum a Base
@@ -291,7 +291,7 @@ Veamos un ejemplo real paso a paso:
     - **APY esperado**: 8.52%
   </Step>
 
-  <Step title="Monitorear ejecucion">
+  <Step title="Monitorear ejecución">
     ```javascript
     // Polling cada 5 segundos
     let intent = await pan.getIntent(intent.id);
@@ -306,10 +306,10 @@ Veamos un ejemplo real paso a paso:
   </Step>
 </Steps>
 
-## Comparacion: Con vs Sin Pan
+## Comparacion: Con vs Sin pan
 
 <CardGroup cols={2}>
-  <Card title="Sin Pan">
+  <Card title="Sin pan">
     ```javascript
     // 1. Configurar providers (por chain)
     const ethProvider = new JsonRpcProvider(ETH_RPC);
@@ -348,11 +348,11 @@ Veamos un ejemplo real paso a paso:
     await depositTx.wait();
 
     // 9. Manejar errores, reintentos, etc.
-    // ... 100+ lineas mas
+    // ... 100+ líneas mas
     ```
   </Card>
 
-  <Card title="Con Pan">
+  <Card title="Con pan">
     ```javascript
     import { Pan } from '@pan/sdk';
 
@@ -377,7 +377,7 @@ Veamos un ejemplo real paso a paso:
   </Card>
 </CardGroup>
 
-## Proximos Pasos
+## Próximos Pasos
 
 <CardGroup cols={2}>
   <Card
@@ -392,20 +392,20 @@ Veamos un ejemplo real paso a paso:
     icon="target"
     href="/guias/conceptos/intents"
   >
-    Entiende como funciona la ejecucion basada en intents
+    Entiende como funciona la ejecución basada en intents
   </Card>
   <Card
-    title="Planes de Ejecucion"
+    title="Planes de Ejecución"
     icon="route"
     href="/guias/conceptos/planes-ejecucion"
   >
-    Explora como Pan optimiza estrategias de ejecucion
+    Explora como pan optimiza estrategias de ejecución
   </Card>
   <Card
     title="Referencia API"
     icon="terminal"
     href="/api/introduccion"
   >
-    Documentacion completa de endpoints
+    Documentación completa de endpoints
   </Card>
 </CardGroup>

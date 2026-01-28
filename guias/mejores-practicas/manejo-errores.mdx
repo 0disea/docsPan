@@ -1,6 +1,6 @@
 ---
 title: "Manejo de Errores"
-description: "Como manejar errores correctamente con Pan API"
+description: "Como manejar errores correctamente con pan API"
 ---
 
 ## Estructura de Errores
@@ -8,7 +8,7 @@ description: "Como manejar errores correctamente con Pan API"
 ```json
 {
   "error": "ERROR_CODE",
-  "message": "Descripcion legible",
+  "message": "Descripción legible",
   "details": {
     "campo": "valor"
   }
@@ -17,36 +17,36 @@ description: "Como manejar errores correctamente con Pan API"
 
 ## Errores Comunes
 
-### Autenticacion
+### Autenticación
 
-| Codigo | Causa | Solucion |
+| Código | Causa | Solución |
 |--------|-------|----------|
-| `UNAUTHORIZED` | API key invalida | Verificar API key |
+| `UNAUTHORIZED` | API key inválida | Verificar API key |
 | `FORBIDDEN` | Sin permisos | Verificar plan/limites |
 
 ### Recursos
 
-| Codigo | Causa | Solucion |
+| Código | Causa | Solución |
 |--------|-------|----------|
 | `WALLET_NOT_FOUND` | Wallet no existe | Crear wallet primero |
 | `INTENT_NOT_FOUND` | Intent no existe | Verificar ID |
 | `WALLET_ALREADY_EXISTS` | Usuario tiene wallet | Usar GET |
 
-### Ejecucion
+### Ejecución
 
-| Codigo | Causa | Solucion |
+| Código | Causa | Solución |
 |--------|-------|----------|
-| `INSUFFICIENT_FUNDS` | Sin fondos | Depositar mas |
+| `INSUFFICIENT_FUNDS` | Sin fondos | Depositar más |
 | `BRIDGE_FAILED` | Bridge fallo | Reintentar |
 | `DEPOSIT_FAILED` | Deposito fallo | Verificar protocolo |
 
 ### Limites
 
-| Codigo | Causa | Solucion |
+| Código | Causa | Solución |
 |--------|-------|----------|
 | `RATE_LIMITED` | Muchas requests | Esperar/backoff |
-| `WALLET_LIMIT_EXCEEDED` | Limite de plan | Upgrade |
-| `INSUFFICIENT_CREDITS` | Sin creditos | Comprar |
+| `WALLET_LIMIT_EXCEEDED` | Límite de plan | Upgrade |
+| `INSUFFICIENT_CREDITS` | Sin créditos | Comprar |
 
 ## Patron de Manejo
 
@@ -78,17 +78,17 @@ function manejarErrorPan(error: PanError): never {
         `Faltan ${error.details?.shortfall} ${error.details?.asset}`
       );
 
-    // Errores de configuracion
+    // Errores de configuración
     case 'UNAUTHORIZED':
       throw new ConfigError('API key invalida');
 
     case 'WALLET_LIMIT_EXCEEDED':
-      throw new LimitError('Actualiza tu plan para mas wallets');
+      throw new LimitError('Actualiza tu plan para más wallets');
 
     // Errores de servidor
     case 'INTERNAL_ERROR':
     case 'SERVICE_UNAVAILABLE':
-      throw new ServerError('Intenta mas tarde');
+      throw new ServerError('Intenta más tarde');
 
     default:
       throw error;
@@ -96,7 +96,7 @@ function manejarErrorPan(error: PanError): never {
 }
 ```
 
-## Reintentos Automaticos
+## Reintentos Automáticos
 
 ```typescript
 async function conReintentos<T>(
@@ -132,7 +132,7 @@ const wallet = await conReintentos(() =>
 );
 ```
 
-## Manejo por Operacion
+## Manejo por Operación
 
 ### Crear Wallet
 
@@ -181,7 +181,7 @@ async function ejecutarIntent(params: LendParams) {
 
     switch (error.code) {
       case 'BRIDGE_FAILED':
-        // Los fondos estan seguros, se puede reintentar
+        // Los fondos están seguros, se puede reintentar
         console.log('Bridge fallo, reintentando...');
         return ejecutarIntent(params);
 
@@ -203,7 +203,7 @@ function ErrorDisplay({ error }: { error: PanError }) {
   const mensajes: Record<string, { titulo: string; accion?: string }> = {
     INSUFFICIENT_FUNDS: {
       titulo: 'Fondos insuficientes',
-      accion: 'Deposita mas fondos'
+      accion: 'Deposita más fondos'
     },
     WALLET_NOT_FOUND: {
       titulo: 'Wallet no encontrada',
@@ -214,7 +214,7 @@ function ErrorDisplay({ error }: { error: PanError }) {
       accion: 'Espera un momento'
     },
     UNAUTHORIZED: {
-      titulo: 'Error de autenticacion',
+      titulo: 'Error de autenticación',
       accion: 'Contacta soporte'
     }
   };
@@ -251,7 +251,7 @@ function logError(error: PanError, context: object) {
   if (process.env.NODE_ENV === 'production') {
     sendToMonitoring(logData);
   } else {
-    console.error('Pan Error:', logData);
+    console.error('pan Error:', logData);
   }
 }
 

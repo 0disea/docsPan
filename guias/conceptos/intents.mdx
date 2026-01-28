@@ -1,13 +1,13 @@
 ---
 title: "Intents"
-description: "Entiende como funcionan las operaciones basadas en intents en Pan"
+description: "Entiende como funcionan las operaciones basadas en intents en pan"
 ---
 
-Los Intents son el corazon de Pan API. Representan objetivos financieros de alto nivel en lugar de transacciones especificas. En lugar de decirle a Pan exactamente que transacciones ejecutar, expresas lo que quieres lograr y Pan determina la mejor manera de hacerlo.
+Los Intents son el corazón de pan API. Representan objetivos financieros de alto nivel en lugar de transacciones especificas. En lugar de decirle a pan exactamente que transacciones ejecutar, expresas lo que quieres lograr y pan determina la mejor manera de hacerlo.
 
 ## ¿Qué es un Intent?
 
-Un intent es una declaracion de un objetivo financiero. Cuando creas un intent, le dices a Pan **que** quieres lograr, no **como** lograrlo.
+Un intent es una declaracion de un objetivo financiero. Cuando creas un intent, le dices a pan **que** quieres lograr, no **como** lograrlo.
 
 <CardGroup cols={2}>
   <Card title="Enfoque Tradicional" icon="code">
@@ -30,24 +30,24 @@ Un intent es una declaracion de un objetivo financiero. Cuando creas un intent, 
   </Card>
 </CardGroup>
 
-El sistema de Pan automaticamente:
+El sistema de pan automaticamente:
 1. Analiza el estado actual del wallet
 2. Evalua protocolos DeFi y oportunidades disponibles
-3. Genera un plan de ejecucion optimizado
+3. Genera un plan de ejecución optimizado
 4. Ejecuta el plan de forma segura
 
 <Steps>
   <Step title="Tu App envia request">
     `POST /intents` con action: lend, amount: 1000 USDC
   </Step>
-  <Step title="Planificacion">
-    Pan consulta balances (500 ARB, 500 Base) y APYs (Base 8.5%, ARB 7.2%)
+  <Step title="Planificación">
+    pan consulta balances (500 ARB, 500 Base) y APYs (Base 8.5%, ARB 7.2%)
   </Step>
-  <Step title="Generacion de plan">
+  <Step title="Generación de plan">
     Plan optimo: bridge ARB a Base + deposit en Aave
   </Step>
-  <Step title="Ejecucion">
-    Pan ejecuta bridge y deposit, retornando txHashes
+  <Step title="Ejecución">
+    pan ejecuta bridge y deposit, retornando txHashes
   </Step>
   <Step title="Resultado">
     Intent completado con resultados y costos de gas
@@ -66,12 +66,12 @@ const intent = await pan.lend({
   walletId: 'pan_wallet_abc123',
   amount: 1000,
   asset: 'USDC'
-  // chain es opcional - Pan encuentra el mejor APY
+  // chain es opcional - pan encuentra el mejor APY
 });
 ```
 
 ```bash cURL
-curl -X POST https://api.pan.dev/v1/intents \
+curl -X POST https://api.pan.tech/v1/intents \
   -H "Authorization: Bearer $PAN_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -83,9 +83,9 @@ curl -X POST https://api.pan.dev/v1/intents \
 ```
 </CodeGroup>
 
-**Que hace Pan:**
+**Que hace pan:**
 - Consulta APYs en todas las chains soportadas
-- Identifica donde estan los fondos del wallet
+- Identifica donde están los fondos del wallet
 - Si es necesario, hace bridge a la chain con mejor APY
 - Deposita en el protocolo (Aave) automaticamente
 
@@ -104,7 +104,7 @@ const intent = await pan.withdraw({
 ```
 
 ```bash cURL
-curl -X POST https://api.pan.dev/v1/intents \
+curl -X POST https://api.pan.tech/v1/intents \
   -H "Authorization: Bearer $PAN_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -133,7 +133,7 @@ const intent = await pan.bridge({
 ```
 
 ```bash cURL
-curl -X POST https://api.pan.dev/v1/intents \
+curl -X POST https://api.pan.tech/v1/intents \
   -H "Authorization: Bearer $PAN_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
@@ -147,31 +147,31 @@ curl -X POST https://api.pan.dev/v1/intents \
 ```
 </CodeGroup>
 
-## Parametros de Intent
+## Parámetros de Intent
 
 ### Comunes a todos los intents
 
-| Parametro | Tipo | Requerido | Descripcion |
+| Parámetro | Tipo | Requerido | Descripción |
 |-----------|------|-----------|-------------|
-| `walletId` | string | Si | ID de la wallet Pan |
+| `walletId` | string | Si | ID de la wallet pan |
 | `action` | string | Si | `lend`, `withdraw`, o `bridge` |
 | `amount` | number | Si | Cantidad en unidades del token |
 | `asset` | string | No | Token a usar (default: `USDC`) |
 
-### Especificos por accion
+### Específicos por accion
 
 **Lend:**
-| Parametro | Tipo | Requerido | Descripcion |
+| Parámetro | Tipo | Requerido | Descripción |
 |-----------|------|-----------|-------------|
-| `chain` | string | No | Chain destino. Si no se especifica, Pan elige la mejor |
+| `chain` | string | No | Chain destino. Si no se especifica, pan elige la mejor |
 
 **Withdraw:**
-| Parametro | Tipo | Requerido | Descripcion |
+| Parámetro | Tipo | Requerido | Descripción |
 |-----------|------|-----------|-------------|
 | `chain` | string | Si | Chain de donde retirar |
 
 **Bridge:**
-| Parametro | Tipo | Requerido | Descripcion |
+| Parámetro | Tipo | Requerido | Descripción |
 |-----------|------|-----------|-------------|
 | `fromChain` | string | Si | Chain origen |
 | `toChain` | string | Si | Chain destino |
@@ -180,7 +180,7 @@ curl -X POST https://api.pan.dev/v1/intents \
 
 Los intents pasan por estados bien definidos:
 
-| Estado | Descripcion | Siguiente |
+| Estado | Descripción | Siguiente |
 |--------|-------------|-----------|
 | `pending` | Intent creado y validado | `planning` |
 | `planning` | Analizando balances, consultando yields, generando plan | `executing` o `failed` |
@@ -198,7 +198,7 @@ Los intents pasan por estados bien definidos:
   </Step>
 
   <Step title="Planning">
-    Pan esta analizando el wallet, evaluando protocolos, y generando el plan de ejecucion optimo.
+    pan está analizando el wallet, evaluando protocolos, y generando el plan de ejecución optimo.
 
     ```json
     {
@@ -212,11 +212,11 @@ Los intents pasan por estados bien definidos:
     - Obtiene APYs actuales de protocolos
     - Calcula rutas de bridge optimas
     - Estima costos de gas
-    - Genera plan de ejecucion
+    - Genera plan de ejecución
   </Step>
 
   <Step title="Executing">
-    Pan esta ejecutando las transacciones en blockchain.
+    pan está ejecutando las transacciones en blockchain.
 
     ```json
     {
@@ -257,7 +257,7 @@ Los intents pasan por estados bien definidos:
   </Step>
 
   <Step title="Failed">
-    Algo salio mal durante la ejecucion.
+    Algo salio mal durante la ejecución.
 
     ```json
     {
@@ -281,7 +281,7 @@ Los intents pasan por estados bien definidos:
 
 ## Monitorear Intents
 
-La ejecucion de intents es asincrona. Debes hacer polling para seguir el progreso:
+La ejecución de intents es asincrona. Debes hacer polling para seguir el progreso:
 
 <CodeGroup>
 ```javascript JavaScript
@@ -294,7 +294,7 @@ async function esperarIntent(intentId) {
 
     console.log(`Estado: ${intent.status}`);
 
-    // Mostrar progreso si esta ejecutando
+    // Mostrar progreso si está ejecutando
     if (intent.status === 'executing' && intent.executionPlan) {
       const pasos = intent.executionPlan.steps;
       const completados = intent.results?.completedSteps || 0;
@@ -361,20 +361,20 @@ def esperar_intent(intent_id):
   **Intervalo de polling recomendado**: 5-10 segundos. Mas frecuente desperdicia recursos, menos frecuente reduce responsividad.
 </Tip>
 
-## Estrategias de Ejecucion
+## Estrategias de Ejecución
 
-Pan determina automaticamente la mejor estrategia basandose en el estado del wallet:
+pan determina automáticamente la mejor estrategia basandose en el estado del wallet:
 
-| Situacion | Estrategia | Pasos |
+| Situación | Estrategia | Pasos |
 |-----------|------------|-------|
 | Fondos ya en mejor chain | `no-bridge` | Deposito directo |
 | Fondos en una chain diferente | `single-bridge` | 1 bridge + deposit |
-| Fondos en multiples chains | `multi-bridge` | N bridges + deposit |
+| Fondos en múltiples chains | `multi-bridge` | N bridges + deposit |
 | Sin fondos suficientes | `insufficient` | Error: fondos insuficientes |
 
 ### no-bridge
 
-Los fondos ya estan en la chain destino. Deposito directo.
+Los fondos ya están en la chain destino. Deposito directo.
 
 ```json
 {
@@ -387,7 +387,7 @@ Los fondos ya estan en la chain destino. Deposito directo.
 
 ### single-bridge
 
-Los fondos estan en una sola chain diferente. Un bridge + deposito.
+Los fondos están en una sola chain diferente. Un bridge + deposito.
 
 ```json
 {
@@ -401,7 +401,7 @@ Los fondos estan en una sola chain diferente. Un bridge + deposito.
 
 ### multi-bridge
 
-Los fondos estan distribuidos en multiples chains. Varios bridges + deposito.
+Los fondos están distribuidos en múltiples chains. Varios bridges + deposito.
 
 ```json
 {
@@ -436,13 +436,13 @@ No hay fondos suficientes. El intent falla en planning.
 
 ### Errores Comunes
 
-| Codigo | Descripcion | Solucion |
+| Código | Descripción | Solución |
 |--------|-------------|----------|
-| `INSUFFICIENT_FUNDS` | No hay fondos suficientes | Depositar mas fondos |
+| `INSUFFICIENT_FUNDS` | No hay fondos suficientes | Depositar más fondos |
 | `WALLET_NOT_FOUND` | Wallet no existe | Verificar walletId |
-| `INVALID_CHAIN` | Chain no soportada | Usar chain valida |
+| `INVALID_CHAIN` | Chain no soportada | Usar chain válida |
 | `BRIDGE_FAILED` | Fallo en bridge | Reintentar intent |
-| `DEPOSIT_FAILED` | Fallo en deposito | Verificar protocolo |
+| `DEPOSIT_FAILED` | Fallo en depósito | Verificar protocolo |
 
 ### Estructura de Error
 
@@ -498,7 +498,7 @@ async function lendSiApy(walletId, amount, minApy) {
 
   // Verificar APY minimo
   if (best.apy < minApy) {
-    console.log(`APY actual (${best.apy}%) menor a minimo (${minApy}%)`);
+    console.log(`APY actual (${best.apy}%) menor a mínimo (${minApy}%)`);
     return null;
   }
 
@@ -541,7 +541,7 @@ async function rebalancearAMejorYield(walletId) {
   console.log(`Mejor yield: ${best.apy}% en ${best.chain}`);
 
   // 4. Crear intent de lending
-  // Pan automaticamente consolidara fondos de todas las chains
+  // pan automáticamente consolidara fondos de todas las chains
   const intent = await pan.lend({
     walletId,
     amount: totalUsdc,
@@ -602,7 +602,7 @@ function getStatusMessage(status) {
     planning: 'Calculando mejor estrategia...',
     executing: 'Ejecutando transacciones...',
     completed: 'Completado!',
-    failed: 'Error en ejecucion'
+    failed: 'Error en ejecución'
   }[status];
 }
 
@@ -613,29 +613,29 @@ await ejecutarConNotificaciones('wallet_123', 1000, (progress) => {
 });
 ```
 
-## Proximos Pasos
+## Próximos Pasos
 
 <CardGroup cols={2}>
   <Card
-    title="Planes de Ejecucion"
+    title="Planes de Ejecución"
     icon="route"
     href="/guias/conceptos/planes-ejecucion"
   >
-    Profundiza en como Pan optimiza estrategias
+    Profundiza en como pan optimiza estrategias
   </Card>
   <Card
     title="Ejecutar Intents"
     icon="play"
     href="/guias/ejecutar-intents"
   >
-    Guia practica paso a paso
+    Guía práctica paso a paso
   </Card>
   <Card
     title="Monitorear Estado"
     icon="chart-line"
     href="/guias/monitorear-estado"
   >
-    Mejores practicas de monitoreo
+    Mejores prácticas de monitoreo
   </Card>
   <Card
     title="Manejo de Errores"
